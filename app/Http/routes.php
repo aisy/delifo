@@ -1,0 +1,87 @@
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Application Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register all of the routes for an application.
+| It's a breeze. Simply tell Laravel the URIs it should respond to
+| and give it the controller to call when that URI is requested.
+|
+*/
+
+// halaman Utama
+Route::resource('home', 'AdminController@halaman_utama');
+
+Route::get('/', function(){
+	if(Auth::check()){
+		// return Redirect::to('/');
+		// return Redirect::to('home');
+		echo Auth::check()->id;
+	}elseif(Auth::guest()){
+		// return Redirect::to('/');
+	}
+});
+
+// login ============================================================
+Route::resource('/', 'AdminController');
+Route::get('auth/login', 'Auth\AuthController@getLogin');
+Route::post('auth/login', 'Auth\AuthController@postLogin');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
+// register
+Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::post('auth/register', 'Auth\AuthController@postRegister');
+
+
+// user ============================================================
+Route::resource('user/', 'UserController');
+Route::get('user/data-user', 'UserController@get_user');
+Route::get('user/data-user/{id}', 'UserController@show');
+Route::post('user/tambah-data', 'UserController@store');
+// Route::put('users/ubah/{id}',);
+Route::delete('user/hapus/{id}', 'UserController@delete');
+
+Route::post('user/login', 'UserController@log');
+
+
+
+// order ===========================================================
+Route::resource('order/', 'OrderController');
+Route::get('order/data-order', 'OrderController@get_all');
+Route::post('order/tambah-data', 'OrderController@insert');
+Route::get('order/detail-order/{id}', 'OrderController@detail');
+
+// === order API
+// Route::post('order/api/tambah-data', 'OrderController@api_insert');
+Route::get('order/api/order-user/{id}', 'OrderController@api_orderUser');
+// Route::put('order/api/data-order', 'OrderController@api_');
+Route::post('detail-order/insertDO', 'OrderController@insertDO');
+Route::get('order/api/data-order', 'OrderController@api_show');
+Route::get('order/api/data-order/{id}', 'OrderController@api_find');
+Route::get('order/api/user/{id}', 'OrderController@api_orderUser');
+// Route::post('order/api/konfirmasi/{id}', 'OrderController@api_konfirmasi');
+Route::patch('order/api/konfirmasi/{id}', 'OrderController@api_konfirmasi');
+
+// kurir ===========================================================
+Route::resource('kurir/', 'DriverController@index');
+Route::post('kurir/tambah-data', 'DriverController@create');
+Route::get('kurir/ubah-data/{id}', 'DriverController@edit');
+Route::patch('kurir/ubah-data/{id}', 'DriverController@update');
+Route::delete('kurir/hapus-data/{id}', ['as'=>'kurir.hapus_data.delete','uses'=>'DriverController@destroy']);
+
+// === kurir API
+// Route::post('kurir/login', 'DriverController@login');
+Route::post('kurir/data-kurir', 'DriverController@show');
+Route::get('kurir/api/data-order', 'OrderController@api_show');
+// Route::put('kurir/api/konfirmasi/{id}', 'OrderController@');
+Route::post('kurir/api/login', 'DriverController@login');
+
+// Admin ===========================================================
+Route::get('admin/', 'AdminController@list_admin');
+Route::post('admin/', 'AdminController@create');
+Route::get('admin/update/{id}', 'AdminController@edit');
+Route::put('admin/update/', 'AdminController@update');
+
+Route::post('admin/login', 'AdminController@log');

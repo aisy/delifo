@@ -1,0 +1,74 @@
+/* slider indikator, 0 0 0 0 */
+.carousel-indicators{
+	width:100%;
+	left:0;
+	margin-left:0;
+	bottom:-52px;
+	background:#20A286;
+	padding: 10px
+}
+
+/* CARAOUSEL */
+
+.carousel-indicators li {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin: 1px;
+    text-indent: -999px;
+    cursor: pointer;
+    background-color: #000 \9;
+    background-color: rgba(0,0,0,0);
+    border: 2px solid #fff;
+    border-radius: 10px;
+}
+/* END OF CARAOUSEL*/
+
+
+
+.carousel-indicators li{
+	/*border-color: #20A286;*/
+}
+/* slider indikator active 0 o 0 0 */
+.carousel-indicators .active{
+	width: 16px;
+    height: 16px;
+	background-color: #fff;
+}
+/* tulisan di slider carousel */
+.carousel-caption{
+	right:0;
+	left:0;
+	bottom:0;
+	padding-bottom:0;
+	background:rgba(0,0,0,0.5);
+	text-align: left;
+	padding-left:20px;
+	padding-right:20px;
+}
+.carousel-caption h1{
+	font-size:1.5em;
+	margin-top:0;
+}
+.carousel{
+	margin-bottom:40px;
+}
+/* carousel inner */
+.item,
+.active,
+.carousel-inner,
+.carousel-inner .item{
+	max-height: 416px;
+	overflow: hidden;
+}
+
+/* navbar logo */
+.navbar-brand{
+	position: relative;
+}
+.navbar-brand img{
+	width: 80px;
+	display: block;
+	position: relative;
+	margin-top:-30px;
+}

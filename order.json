@@ -1,0 +1,25 @@
+{
+	"id_order": "1",
+	"tanggal" : "2016-11-20",
+	"status"  : "belum di konfirmasi",
+	"id_user" : "2",
+	"order":
+			[
+				{
+					"id_order"		:"1",
+					"nama_order"	:"cilok bakar",
+					"keterangan"	:"qwertyuiop",
+					"alamat"		:"qwertyuiop",
+					"longitude"		:"-7.956714008391777",
+					"latitude"		:"112.61714353900902"
+				},
+				{
+					"id_order"		:"1",
+					"nama_order"	:"Es pisang ijo",
+					"keterangan"	:"qwertyuiop",
+					"alamat"		:"qwertyuiop",
+					"longitude"		:"-7.956714008391777",
+					"latitude"		:"112.61714353900902"
+				}
+			]
+}
