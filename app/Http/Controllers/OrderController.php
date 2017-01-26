@@ -92,7 +92,7 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -101,9 +101,11 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id){
         //
+        $data =  Order::where('id_order', $id)->get();
+
+        return View::make('order/edit_order', compact('data'));
     }
 
     /**

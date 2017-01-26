@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use App\Driver as Driver;
 
 use View;
-// use Request;
+use Request;
 use Response;
 use Input;
 use Auth;
 use Illuminate\Html\FormFacade;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 // use Symfony\Component\HttpFoundation\File\UploadedFile;

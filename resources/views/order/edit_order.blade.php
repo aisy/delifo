@@ -23,12 +23,12 @@
 				<input type="hidden" name="_token" value="{{csrf_token()}}" />
 
 				<div class="form-group">
-					<input type="text" name="nama_lengkap" class="form-control" value="{{ $data_update['nama_lengkap'] }}">
+					<input type="text" name="nama_lengkap" class="form-control" value="{{ $data['nama_lengkap'] }}">
 				</div>
 
 				<div class="form-group">
 					<select name="jkel" class="form-control">
-						<option value="{{ $data_update['jkel'] }}">{{ $data_update['jkel'] }}</option>
+						<option value="{{ $data['jkel'] }}">{{ $data['jkel'] }}</option>
 						<option value="">========================</option>
 						<option value="laki-laki">Laki-laki</option>
 						<option value="perempuan">Perempuan</option>
@@ -36,7 +36,7 @@
 				</div>
 
 				<div class="form-group">
-					<input type="text" name="telpon" class="form-control" id="" value="{{ $data_update['telpon'] }}">
+					<input type="text" name="telpon" class="form-control" id="" value="{{ $data['telpon'] }}">
 				</div>
 
 				<div class="form-group">
