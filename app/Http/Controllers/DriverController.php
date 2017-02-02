@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use App\Driver as Driver;
 
 use View;
-use Request;
+// use Request;
 use Response;
 use Input;
 use Auth;
 use Illuminate\Html\FormFacade;
-// use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 // use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -46,12 +46,19 @@ class DriverController extends Controller{
 
     public function create(Request $request){
 
+
         $file           = $request->file('input-file-preview'); //mangambil data file dari input type file
-        $name_file      = $file->getClientOriginalName(); //dapat nama file dari $file
-        $destination    = public_path().'/Driver'; //lokasi folder yang akan di upload
+
+        if($file==NULL){
+            $name_file = " ";
+        }else{
+            $name_file      = $file->getClientOriginalName(); //dapat nama file dari $file
+            $destination    = public_path().'/Driver'; //lokasi folder yang akan di upload
+
+            $file->move($destination, $name_file);
+        }
 
 
-        $file->move($destination, $name_file);
 
         $insert = Driver::create(
             array(
@@ -109,12 +116,12 @@ class DriverController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id){
-     $driverupdate = Request::all();
-     $driver = Driver::find($id);
-     $driver->update($driverupdate);
+       $driverupdate = $request->all();
+       $driver = Driver::find($id);
+       $driver->update($driverupdate);
 
-     return redirect('kurir/');
- }   
+       return redirect('kurir/');
+   }   
 
     /**
      * Remove the specified resource from storage.
@@ -130,18 +137,18 @@ class DriverController extends Controller{
 
     public function login(Request $request){
 
-       $log = Driver::where('username', Input::get('username'))
-       ->where('password', Input::get('password'))
-       ->first();
+     $log = Driver::where('username', Input::get('username'))
+     ->where('password', Input::get('password'))
+     ->first();
 
-       if($log){
+     if($log){
 
-          $log->setAttribute('status','sukses');
-          return Response::json($log);
+      $log->setAttribute('status','sukses');
+      return Response::json($log);
 
-      }else{
-        return Response::json(['status'=>'Gagal Login']);
-    }
+  }else{
+    return Response::json(['status'=>'Gagal Login']);
+}
 
 }
 

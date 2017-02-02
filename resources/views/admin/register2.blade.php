@@ -10,6 +10,7 @@
 <li><a href="{{ url('order') }}"><i class="fa fa-inbox"></i> Order</a></li>
 <li><a href="{{ url('kurir') }}"><i class="fa fa-motorcycle"></i> Kurir</a></li>
 <li class="active"><a href="{{ url('admin') }}"><i class="fa fa-users"></i> Admin</a></li>
+<li><a href="{{ url('pengguna') }}"><i class="fa fa-users"></i> Pengguna</a></li>
 @endsection
 
 @section('title', 'Admin')
@@ -78,7 +79,7 @@
             <h3 class="panel-title"><i class="fa fa-download"></i> Input Data Admin</h3>
         </div>
         <div class="panel-body">
-            <form method="POST" action="admin">
+            <form method="POST" action="/admin">
                 {!! csrf_field() !!}
 
                 <div class="form-group">

@@ -52,6 +52,10 @@ Route::resource('order/', 'OrderController');
 Route::get('order/data-order', 'OrderController@get_all');
 Route::post('order/tambah-data', 'OrderController@insert');
 Route::get('order/detail-order/{id}', 'OrderController@detail');
+Route::get('order/ubah-order/{id}', 'OrderController@edit');
+Route::patch('order/ubah-order/{id}', 'OrderController@update');
+Route::delete('order/hapus-order/{id}', ['as'=>'order.hapus_data.delete', 'uses'=>'OrderController@destroy']);
+
 
 // === order API
 // Route::post('order/api/tambah-data', 'OrderController@api_insert');

@@ -10,6 +10,7 @@
 <li class="active"><a href="{{ url('order') }}"><i class="fa fa-inbox"></i> Order</a></li>
 <li><a href="{{ url('kurir') }}"><i class="fa fa-motorcycle"></i> Kurir</a></li>
 <li><a href="{{ url('admin') }}"><i class="fa fa-users"></i> Admin</a></li>
+<li><a href="{{ url('pengguna') }}"><i class="fa fa-users"></i> Pengguna</a></li>
 @endsection
 
 @section('title', 'Order')
@@ -40,23 +41,24 @@
 						<td>{{ $element['created_at'] }}</td>
 						<td>
 							@if ($element['status']=='belum di konfirmasi')
-								<i class="fa fa-ban"></i> {{ $element['status'] }}
+							<i class="fa fa-ban"></i> {{ $element['status'] }}
 							@else
-								<i class="fa fa-check"></i> {{ $element['status'] }}
+							<i class="fa fa-check"></i> {{ $element['status'] }}
 							@endif
 						</td>
 						<td class="text-center center">
-							<div class="btn-group">
-								<a href="{{ url('order/detail-order/'.$element['id'].'') }}" class="btn btn-xs btn-info">
-									<i class="fa fa-list"></i>
-								</a>
-								<a href="" class="btn btn-xs btn-warning">
-									<i class="fa fa-edit"></i>
-								</a>
-								<a href="" class="btn btn-xs btn-danger">
-									<i class="fa fa-times"></i>
-								</a>
-							</div>
+							
+							<a href="{{ url('order/detail-order/'.$element['id'].'') }}" class="btn btn-xs btn-info">
+								<i class="fa fa-list"></i>
+							</a>
+							<a href="{{ url('order/ubah-order/'.$element['id']) }}" class="btn btn-xs btn-warning">
+								<i class="fa fa-edit"></i>
+							</a>
+
+							{!! Form::open(['method'=>'DELETE', 'route'=>['order.hapus_data.delete',$element['id']] ]) !!}
+							{!! Form::button('<i class="fa fa-times"></i>', ['type'=>'submit', 'class'=>'btn btn-xs btn-danger']) !!}
+							{!! Form::close() !!}
+							
 						</td>
 					</tr>
 					@endforeach

@@ -9,7 +9,8 @@ use Response;
 use Input;
 use Auth;
 use View;
-use Illuminate\Http\Request;
+use Request;
+// use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -103,9 +104,10 @@ class OrderController extends Controller
      */
     public function edit($id){
         //
-        $data =  Order::where('id_order', $id)->get();
+        $data =  Order::where('order.id', $id)
+            ->join('users','users.id', '=', 'order.id_user')->first();
 
-        return View::make('order/edit_order', compact('data'));
+        return View::make('order/edit_order', compact('data', 'id'));
     }
 
     /**
@@ -118,6 +120,11 @@ class OrderController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $OrderUpdate = Request::all();
+        $order = Order::find($id);
+        $order->update($OrderUpdate);
+
+        return redirect('order/');
     }
 
     /**
@@ -128,6 +135,8 @@ class OrderController extends Controller
      */
     public function destroy($id){
         //
+        Order::find($id)->delete();
+        return redirect('order/');
     }
 
 

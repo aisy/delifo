@@ -11,6 +11,7 @@
 <li><a href="{{ url('order') }}"><i class="fa fa-inbox"></i> Order</a></li>
 <li class="active"><a href="{{ url('kurir') }}"><i class="fa fa-motorcycle"></i> Kurir</a></li>
 <li><a href="{{ url('admin') }}"><i class="fa fa-users"></i> Admin</a></li>
+<li><a href="{{ url('pengguna') }}"><i class="fa fa-users"></i> Pengguna</a></li>
 @endsection
 
 @section('title', 'Driver')

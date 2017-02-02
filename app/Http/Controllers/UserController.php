@@ -105,6 +105,9 @@ class userController extends Controller
      */
     public function edit($id){
         //
+        $data = User::find($id)->first();
+
+        return View::make('', compact('data'));
     }
 
     /**
@@ -116,6 +119,11 @@ class userController extends Controller
      */
     public function update(Request $request, $id){
         //
+        $updateUser = $request->all();
+        $update = User::find($id);
+        $update->update($updateUser);
+
+        return redirect('user/');
     }
 
     /**
@@ -124,6 +132,14 @@ class userController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function hapus($id){
+        # code...
+        User::find($id)->delete();
+
+        return redirect('user/'); 
+    }
+
     public function destroy($id)
     {
         //
