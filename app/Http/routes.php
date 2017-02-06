@@ -46,6 +46,9 @@ Route::delete('user/hapus/{id}', 'UserController@delete');
 Route::post('user/login', 'UserController@log');
 
 
+// pengguna ========================================================
+Route::resource('pengguna/', 'UserController');
+
 
 // order ===========================================================
 Route::resource('order/', 'OrderController');
@@ -61,7 +64,7 @@ Route::delete('order/hapus-order/{id}', ['as'=>'order.hapus_data.delete', 'uses'
 // Route::post('order/api/tambah-data', 'OrderController@api_insert');
 Route::get('order/api/order-user/{id}', 'OrderController@api_orderUser');
 // Route::put('order/api/data-order', 'OrderController@api_');
-Route::post('detail-order/insertDO', 'OrderController@insertDO');
+Route::post('order/tambah-data', 'OrderController@insertDO');
 Route::get('order/api/data-order', 'OrderController@api_show');
 Route::get('order/api/data-order/{id}', 'OrderController@api_find');
 Route::get('order/api/user/{id}', 'OrderController@api_orderUser');
@@ -86,6 +89,7 @@ Route::post('kurir/api/login', 'DriverController@login');
 Route::get('admin/', 'AdminController@list_admin');
 Route::post('admin/', 'AdminController@create');
 Route::get('admin/update/{id}', 'AdminController@edit');
-Route::put('admin/update/', 'AdminController@update');
+Route::patch('admin/update/', 'AdminController@update');
+Route::delete('admin/hapus/{id}', ['as'=>'admin.hapus_data.delete','uses'=>'AdminController@destroy']);
 
 Route::post('admin/login', 'AdminController@log');

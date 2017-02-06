@@ -46,21 +46,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                     @foreach($data_admin as $admin)
-                     <tr>
+                       @foreach($data_admin as $admin)
+                       <tr>
                         <td>{{ $admin['id'] }}</td>
                         <td>{{ $admin['nama_lengkap'] }}</td>
                         <td>{{ $admin['username'] }}</td>
                         <td>{{ $admin['telpon'] }}</td>
                         <td class="center text-center">
-                            <div class="btn-group">
-                                <a href="admin/update/{{ $admin['id'] }}" class="btn btn-xs btn-warning">
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                                <a href="admin/delete/{{ $admin['id'] }}" class="btn btn-xs btn-danger">
-                                    <i class="fa fa-times"></i>
-                                </a>
-                            </div>
+
+                            <a href="admin/update/{{ $admin['id'] }}" class="btn btn-xs btn-warning">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                            {!! Form::open(['method'=>'DELETE', 'route'=>['admin.hapus_data.delete',$admin['id']]]) !!}
+
+                            {!! Form::button('<i class="fa fa-times"></i>', ['type'=>'submit', 'class'=>'btn btn-xs btn-danger']) !!}
+                            {!! Form::close() !!}
+                            
                         </td>
                     </tr>
                     @endforeach

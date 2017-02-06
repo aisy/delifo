@@ -7,6 +7,8 @@ use Response;
 use Input;
 use Illuminate\Http\Request;
 
+use Auth;
+use View;
 use Crypt;
 use Collection;
 
@@ -21,6 +23,13 @@ class userController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
+
+         if(Auth::guest()){
+            return redirect('/');
+        }else{
+            $data_user = User::all();
+            return View::make('user/user_input', compact('data_user'));
+        }
 
     }
 

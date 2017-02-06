@@ -76,7 +76,7 @@ class AdminController extends Controller{
             'jkel'          => $data['jkel'],
             'telpon'        => $data['telpon']
             ));
-        return Redirect::to('/');
+        return Redirect::to('Admin/');
     }
 
     /**
@@ -138,7 +138,8 @@ class AdminController extends Controller{
      */
     public function destroy($id)
     {
-        //
+        Admin::find($id)->delete();
+        return redirect('Admin/');
     }
 
     public function log(Request $request){

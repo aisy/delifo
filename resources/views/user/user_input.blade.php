@@ -9,18 +9,18 @@
 @section('link_nav')
 <li><a href="{{ url('home') }}"><i class="fa fa-home"></i> Halaman Utama</a></li>
 <li><a href="{{ url('order') }}"><i class="fa fa-inbox"></i> Order</a></li>
-<li class="active"><a href="{{ url('kurir') }}"><i class="fa fa-motorcycle"></i> Kurir</a></li>
+<li><a href="{{ url('kurir') }}"><i class="fa fa-motorcycle"></i> Kurir</a></li>
 <li><a href="{{ url('admin') }}"><i class="fa fa-users"></i> Admin</a></li>
-<li><a href="{{ url('pengguna') }}"><i class="fa fa-users"></i> Pengguna</a></li>
+<li class="active"><a href="{{ url('pengguna') }}"><i class="fa fa-users"></i> Pengguna</a></li>
 @endsection
 
-@section('title', 'Driver')
+@section('title', 'User')
 
 @section('panel1')
-<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 	<div class="panel panel-primary">
 		<div class="panel-heading">
-			<h3 class="panel-title"><i class="fa fa-database"></i> Data Driver</h3>
+			<h3 class="panel-title"><i class="fa fa-database"></i> Data User</h3>
 		</div>
 		<div class="panel-body">
 			{{-- @foreach ($variable as $key => $value) --}}
@@ -28,34 +28,32 @@
 			<table id="dataTable" class="table table-bordered" cellspacing="0" width="100%">
 				<thead>
 					<tr>
-						<th>Gambar</th>
-						<th>Kode Kurir</th>
-						<th>Nama Lengkap</th>
-						<th>Jenis Kelamin</th>
+						<th>Nama</th>
+						<th>Username</th>
+						<th>Email</th>
+						<th>Alamat</th>
 						<th>No. Telp</th>
-						<th>Pilihan</th>
+						{{-- <th>Pilihan</th> --}}
 					</tr>
 				</thead>
 				<tbody>
-					@foreach ($data_driver as $element)
+					@foreach ($data_user as $element)
 					<tr>
-						<td>
-							<img src="Driver/{{ $element->gambar }}" class="img-responsive img-circle" alt="Image">
-						</td>
-						<td>{{ $element['id'] }}</td>
-						<td>{{ $element->nama_lengkap }}</td>
-						<td>{{ $element->jkel }}</td>
+						<td>{{ $element->name }}</td>
+						<td>{{ $element->username }}</td>
+						<td>{{ $element->email }}</td>
+						<td>{{ $element->alamat }}</td>
 						<td>{{ $element->telpon }}</td>
-						<td class="text-center center">
+						{{-- <td class="text-center center">
 
 							
-							<a href="{{ url('kurir/ubah-data/'.$element['id']) }}" class="btn btn-sm btn-warning"><i class="fa fa-edit"> ubah</i>
+							<a href="{{ url('user/update/'.$element['id']) }}" class="btn btn-sm btn-warning"><i class="fa fa-edit"> ubah</i>
 							</a>
 
 							{!! Form::open(['method'=>'DELETE','route'=>['kurir.hapus_data.delete',$element['id'] ] ]) !!}
 							{!! Form::button('<i class="fa fa-times"></i> hapus', ['type'=>'submit','class'=>'btn btn-sm btn-danger']) !!}
 							{!! Form::close() !!}
-						</td>
+						</td> --}}
 					</tr>
 					@endforeach
 				</tbody>
@@ -67,11 +65,11 @@
 @endsection
 
 {{-- sadasd --}}
-@section('panel2')
+{{-- @section('panel2')
 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
 	<div class="panel panel-primary">
 		<div class="panel-heading">
-			<h3 class="panel-title"><i class="fa fa-download"></i> Input Data Driver</h3>
+			<h3 class="panel-title"><i class="fa fa-download"></i> Input Data User</h3>
 		</div>
 		<div class="panel-body">
 			<form action="kurir/tambah-data" method="POST" role="form" enctype="multipart/form-data">
@@ -129,7 +127,7 @@
 	</div>
 </div>
 
-@endsection
+@endsection --}}
 
 @section('js')
 <script src="{{ URL::to('Asset/js/jquery.dataTables.js') }}" charset="utf-8"></script>

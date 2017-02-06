@@ -176,12 +176,16 @@ class OrderController extends Controller
     public function api_konfirmasi(Request $request, $id){
         try {
 
+            $id = Input::get('id_order');
+
             $req  = array(
                 'id_driver' => Input::get('id_driver'),
                 'status'    => 'sudah di konfirmasi'
             );
             $book = Order::find($id);
             $book->update($req);
+
+            return response(['status']->"sukses");
 
         } catch (Exception $e) {
 
@@ -203,6 +207,7 @@ class OrderController extends Controller
                $data->setAttribute('order', $data2);
                return Response::json($data);
            }else{
+
             return Response::json(['status'=>'data tdak ada']);
         }
 
