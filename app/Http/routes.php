@@ -75,6 +75,8 @@ Route::patch('order/api/konfirmasi/{id}', 'OrderController@api_konfirmasi');
 Route::resource('kurir/', 'DriverController@index');
 Route::post('kurir/tambah-data', 'DriverController@create');
 Route::get('kurir/ubah-data/{id}', 'DriverController@edit');
+Route::get('kurir/data_order', 'OrderController@api_showInvalid');
+Route::get('kurir/data_order/{id}', 'OrderController@api_find');
 Route::patch('kurir/ubah-data/{id}', 'DriverController@update');
 Route::delete('kurir/hapus-data/{id}', ['as'=>'kurir.hapus_data.delete','uses'=>'DriverController@destroy']);
 

@@ -11,7 +11,7 @@ class Order extends Model
 	protected $table = 'order';
     //field yang bisa di isi
 	protected $fillable = ['alamat', 'deskripsi', 'tanggal', 'status', 'id_user', 'id_driver', 'longitude', 'latitude'];
-	
+
 	public function Order(){
 		return $this->hasMany('User');
 	}

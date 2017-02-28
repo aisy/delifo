@@ -73,7 +73,7 @@ class userController extends Controller
                 'email'     => Input::get('email'),
                 'telpon'    => Input::get('telpon'),
                 'password'  => Input::get('password'),
-                'alamat'    => Input::get('alamat') 
+                'alamat'    => Input::get('alamat')
                 ));
 
             // if($insert){
@@ -146,7 +146,7 @@ class userController extends Controller
         # code...
         User::find($id)->delete();
 
-        return redirect('user/'); 
+        return redirect('user/');
     }
 
     public function destroy($id)

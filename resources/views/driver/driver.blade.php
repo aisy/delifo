@@ -40,7 +40,7 @@
 					@foreach ($data_driver as $element)
 					<tr>
 						<td>
-							<img src="Driver/{{ $element->gambar }}" class="img-responsive img-circle" alt="Image">
+							<img src="Driver/{{ $element->gambar }}" heigth="20" width="20" class="img-responsive" alt="Image">
 						</td>
 						<td>{{ $element['id'] }}</td>
 						<td>{{ $element->nama_lengkap }}</td>
@@ -48,7 +48,7 @@
 						<td>{{ $element->telpon }}</td>
 						<td class="text-center center">
 
-							
+
 							<a href="{{ url('kurir/ubah-data/'.$element['id']) }}" class="btn btn-sm btn-warning"><i class="fa fa-edit"> ubah</i>
 							</a>
 
@@ -84,11 +84,11 @@
 
 				<div class="form-group">
 					<input type="text" name="username" class="form-control" placeholder="Username">
-				</div>	
+				</div>
 
 				<div class="form-group">
 					<input type="password" name="password" class="form-control" placeholder="Password">
-				</div>			
+				</div>
 
 				<div class="form-group">
 					<select name="jkel" class="form-control">

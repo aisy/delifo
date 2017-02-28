@@ -29,7 +29,7 @@ class DriverController extends Controller{
             $data_driver = Driver::all();
             return View::make('driver/driver', compact('data_driver'));
         }
-        
+
     }
 
     /**
@@ -116,12 +116,12 @@ class DriverController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id){
-       $driverupdate = $request->all();
-       $driver = Driver::find($id);
-       $driver->update($driverupdate);
+     $driverupdate = $request->all();
+     $driver = Driver::find($id);
+     $driver->update($driverupdate);
 
-       return redirect('kurir/');
-   }   
+     return redirect('kurir/');
+ }
 
     /**
      * Remove the specified resource from storage.
@@ -135,22 +135,27 @@ class DriverController extends Controller{
     }
 
 
+// =====================  API =================================
+
+
     public function login(Request $request){
 
-     $log = Driver::where('username', Input::get('username'))
-     ->where('password', Input::get('password'))
-     ->first();
+       $log = Driver::where('username', Input::get('username'))
+       ->where('password', Input::get('password'))
+       ->first();
 
-     if($log){
+       if($log){
 
-      $log->setAttribute('status','sukses');
-      return Response::json($log);
+          $log->setAttribute('status','sukses');
+          return Response::json($log);
+        }else{
+            return Response::json(['status'=>'Gagal Login']);
+        }
+    }
 
-  }else{
-    return Response::json(['status'=>'Gagal Login']);
-}
+    public function edit_profile($value=''){
 
-}
+    }
 
 
 

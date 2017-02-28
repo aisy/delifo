@@ -153,6 +153,16 @@ class OrderController extends Controller
         }
     }
 
+    public function api_showInvalid(){
+        $data = Order::where('status', 'belum di konfirmasi')->get();
+
+        if($data){
+            return Response::json($data);
+        }else{
+            return Response::json(['status'=>'data ']);
+        }
+    }
+
     public function api_orderUser($id){
         try {
 
@@ -163,20 +173,20 @@ class OrderController extends Controller
             if(count($data)>=1){
                 return Response::json($data);
             }else{
-                return Response::json(['status:'=>'tidak ada data']);
+                return Response::json(['status'=>'tidak ada data']);
             }
 
         } catch (Exception $e) {
             echo $e->getMessage();
         }
-        
+
     }
 
     //konfirmasi order
     public function api_konfirmasi(Request $request, $id){
         try {
 
-            $id = Input::get('id_order');
+            // $id = Input::get('id_order');
 
             $req  = array(
                 'id_driver' => Input::get('id_driver'),
@@ -185,12 +195,12 @@ class OrderController extends Controller
             $book = Order::find($id);
             $book->update($req);
 
-            return response(['status']->"sukses");
+            return response(['status'=>"sukses"]);
 
         } catch (Exception $e) {
 
             echo $e->getMessage();
-            
+
         }
     }
 
@@ -237,7 +247,7 @@ public function api_edit($id){
     $edit = Order::find($id)->first();
 
     if($edit){
-        return Response::json($edit);    
+        return Response::json($edit);
     }else{
         return Response::json(['status'=>'data tidak ditemukan']);
     }
@@ -262,7 +272,7 @@ public function api_delete($id){
 public function insertDO(Request $request){
 
         // $data_json = json_decode($request->input("order")); //baca konten post json
-        $data_json = $request->input("order"); //baca konten post json
+        $data_json = Request::input("order"); //baca konten post json
 
         // $id = date('Ymdis');
 
@@ -270,11 +280,11 @@ public function insertDO(Request $request){
             array(
                 // 'id_order'  => $id,
                 // 'id'        => $id,
-                'tanggal'   => $request->input('tanggal'),
+                'tanggal'   => Request::input('tanggal'),
                 'status'    => 'belum di konfirmasi',
-                'id_user'   => $request->input('id_user'),
-                'longitude' => $request->input('longitude'),
-                'latitude'  => $request->input('latitude')
+                'id_user'   => Request::input('id_user'),
+                'longitude' => Request::input('longitude'),
+                'latitude'  => Request::input('latitude')
                 )
             );
 
@@ -291,7 +301,7 @@ public function insertDO(Request $request){
                     'latitude'      => $value['latitude']
                     )
                 );
-        } 
+        }
 
         if($insert1&&$insert2){
 
