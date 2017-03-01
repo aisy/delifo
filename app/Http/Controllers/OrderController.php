@@ -154,7 +154,7 @@ class OrderController extends Controller
     }
 
     public function api_showInvalid(){
-        $data = Order::where('status', 'belum di konfirmasi')->get();
+        $data = Order::where('status', 'belum di konfirmasi')->orderBy('created_at', 'DESC')->get();
 
         if($data){
             return Response::json($data);
@@ -209,7 +209,7 @@ class OrderController extends Controller
 
         try {
 
-            $data   = Order::where('id_user', $id)->join('users', 'users.id', '=', 'order.id_user')->first();
+            $data   = Order::where('order.id', $id)->join('users', 'users.id', '=', 'order.id_user')->first();
 
             $data2 = Detail::where('id_order', $id)->get();
 

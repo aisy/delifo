@@ -75,7 +75,7 @@ Route::patch('order/api/konfirmasi/{id}', 'OrderController@api_konfirmasi');
 Route::resource('kurir/', 'DriverController@index');
 Route::post('kurir/tambah-data', 'DriverController@create');
 Route::get('kurir/ubah-data/{id}', 'DriverController@edit');
-Route::get('kurir/data_order', 'OrderController@api_showInvalid');
+Route::get('kurir/data_order', 'OrderController@api_show');
 Route::get('kurir/data_order/{id}', 'OrderController@api_find');
 Route::patch('kurir/ubah-data/{id}', 'DriverController@update');
 Route::delete('kurir/hapus-data/{id}', ['as'=>'kurir.hapus_data.delete','uses'=>'DriverController@destroy']);
@@ -83,7 +83,8 @@ Route::delete('kurir/hapus-data/{id}', ['as'=>'kurir.hapus_data.delete','uses'=>
 // === kurir API
 // Route::post('kurir/login', 'DriverController@login');
 Route::post('kurir/data-kurir', 'DriverController@show');
-Route::get('kurir/api/data-order', 'OrderController@api_show');
+Route::get('kurir/api/data-order', 'OrderController@api_showInvalid');
+Route::get('kurir/api/data-order/{id}', 'OrderController@api_find');
 // Route::put('kurir/api/konfirmasi/{id}', 'OrderController@');
 Route::post('kurir/api/login', 'DriverController@login');
 
