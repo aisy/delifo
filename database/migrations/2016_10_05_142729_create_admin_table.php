@@ -18,7 +18,7 @@ class CreateAdminTable extends Migration
             $table->string('username');
             $table->string('password', 60);
             $table->string('jkel');
-            $table->integer('telpon');
+            $table->bigInteger('telpon');
             $table->rememberToken();
             $table->timestamps();
         });

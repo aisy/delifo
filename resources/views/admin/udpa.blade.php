@@ -16,30 +16,31 @@
 			<h3 class="panel-title">Update Data Admin</h3>
 		</div>
 		<div class="panel-body">
-			<form action="update" method="POST" role="form">
+
+			<form action="{{url('admin/proses-update/'.$id)}}" method="POST" role="form">
 
                 {{-- untuk mengirim method put --}}
-                <input name="_method" type="hidden" value="PUT">
+                <input name="_method" type="hidden" value="PATCH">
 
 				<div class="form-group">
 				    <label>Nama Lengkap</label>
-					<input type="text" name="" class="form-control" id="" value="{{ $data_edit['nama_lengkap'] }}" placeholder="Input field">
+					<input type="text" name="nama_lengkap" class="form-control" id="" value="{{ $data_edit['nama_lengkap'] }}" placeholder="Input field">
 				</div>
 
 				<div class="form-group">
 				    <label>Username</label>
-					<input type="text" name="" class="form-control" id="" value="{{ $data_edit['username'] }}" placeholder="Input field">
+					<input type="text" name="username" class="form-control" id="" value="{{ $data_edit['username'] }}" placeholder="Input field">
 				</div>
 
 				<div class="form-group">
 				     <label>Password Baru</label>
-					<input type="text" name="" class="form-control" id="" value="{{ $data_edit['password'] }}" placeholder="Input field">
+					<input type="text" name="password" class="form-control" id="" value="{{ $data_edit['password'] }}" placeholder="Input field">
 				</div>
 
 				<div class="form-group">
 					<input type="text" name="" class="form-control" id="" placeholder="Input field">
 				</div>
-			
+
 				<button type="submit" class="btn btn-primary">Submit</button>
 			</form>
 		</div>

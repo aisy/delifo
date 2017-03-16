@@ -324,7 +324,7 @@ public function insertDO(Request $request){
                 );
         }
 
-        if($insert1&&$insert2){
+        if($insert1 && $insert2){
 
             return Response::json(['status_response'=>'sukses']);
 

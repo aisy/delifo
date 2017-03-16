@@ -47,7 +47,7 @@ class AdminController extends Controller{
             $total_order_belum  = count(Order::where('status', 'belum di konfirmasi')->get());
             $total_order_sudah  = count(Order::where('status', 'sudah di konfirmasi')->get());
 
-            return View::make('admin/index', compact('total_driver','total_order_belum','total_order_sudah'));    
+            return View::make('admin/index', compact('total_driver','total_order_belum','total_order_sudah'));
         }
     }
 
@@ -109,7 +109,7 @@ class AdminController extends Controller{
      */
     public function edit($id){
         $data_edit = Admin::find($id);
-        return View::make('admin/udpa', compact('data_edit'));
+        return View::make('admin/udpa', compact('data_edit', 'id'));
         // return View::make(view, data, mergeData)
         // return Response::json('data_edit');
         // print_r($data_edit);
@@ -143,7 +143,7 @@ class AdminController extends Controller{
     }
 
     public function log(Request $request){
-        
+
         $username = Input::get('username');
         $password = Input::get('password');
 
@@ -152,7 +152,7 @@ class AdminController extends Controller{
                     ->first();
 
         if($log){
-           
+
           $log->setAttribute('status','sukses');
           return Response::json($log);
 
