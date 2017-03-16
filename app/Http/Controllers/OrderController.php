@@ -318,7 +318,8 @@ public function insertDO(Request $request){
                     'keterangan'    => $value['keterangan'],
                     'alamat'        => $value['alamat'],
                     'longitude'     => $value['longitude'],
-                    'latitude'      => $value['latitude']
+                    'latitude'      => $value['latitude'],
+                    'status'        => 'belum di konfirmasi'
                     )
                 );
         }
