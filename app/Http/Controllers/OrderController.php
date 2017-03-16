@@ -154,7 +154,12 @@ class OrderController extends Controller
     }
 
     public function api_showInvalid(){
-        $data = Order::where('status', 'belum di konfirmasi')->orderBy('created_at', 'DESC')->get();
+        // $data = Order::where('status', 'belum di konfirmasi')->orderBy('created_at', 'DESC')->get();
+
+        $data = Order::where('order.status', 'belum di konfirmasi')
+            ->orderBy('order.tanggal', 'DESC')
+            ->select(['order.id as id_order', 'order.tanggal' , 'users.*'])
+            ->join('users','users.id', '=', 'order.id_user')->get();
 
         if($data){
             return Response::json($data);
@@ -168,12 +173,13 @@ class OrderController extends Controller
 
             $data = Order::where('id_user', $id)
             ->join('users','users.id', '=', 'order.id_user')
+            ->orderBy('status', 'ASC')
             ->get();
 
             if(count($data)>=1){
                 return Response::json($data);
             }else{
-                return Response::json(['status'=>'tidak ada data']);
+                return Response::json([['status'=>'tidak ada data']]);
             }
 
         } catch (Exception $e) {
@@ -204,12 +210,26 @@ class OrderController extends Controller
         }
     }
 
+    public function item_konfirmasi(Request $request, $id){
+
+      $req = array(
+        'status' => "sudah di konfirmasi"
+      );
+
+      $book = DETAIL::find($id)->update($req);
+
+      return response(['status'=>"sukses"]);
+    }
+
 
     public function api_find($id){
 
         try {
 
-            $data   = Order::where('order.id', $id)->join('users', 'users.id', '=', 'order.id_user')->first();
+            $data   = Order::where('order.id', $id)
+            ->join('users', 'users.id', '=', 'order.id_user')
+            ->select(['order.id as id_order', 'order.tanggal' , 'order.longitude', 'order.latitude', 'order.status', 'order.id_driver' , 'users.*'])
+            ->first();
 
             $data2 = Detail::where('id_order', $id)->get();
 

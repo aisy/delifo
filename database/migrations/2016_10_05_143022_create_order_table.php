@@ -17,6 +17,7 @@ class CreateOrderTable extends Migration
             $table->integer('id_order');
             $table->text('nama_order');
             $table->text('keterangan');
+            $table->text('status');
             $table->text('alamat');
             $table->string('longitude');
             $table->string('latitude');
@@ -29,7 +30,7 @@ class CreateOrderTable extends Migration
         //           ->on('order')
         //           ->onDelete('cascade');
         // });
-    } 
+    }
 
     /**
      * Reverse the migrations.

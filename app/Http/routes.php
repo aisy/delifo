@@ -70,6 +70,7 @@ Route::get('order/api/data-order/{id}', 'OrderController@api_find');
 Route::get('order/api/user/{id}', 'OrderController@api_orderUser');
 // Route::post('order/api/konfirmasi/{id}', 'OrderController@api_konfirmasi');
 Route::patch('order/api/konfirmasi/{id}', 'OrderController@api_konfirmasi');
+Route::patch('order/api/konfirmasi-item/{id}', 'OrderController@item_konfirmasi');
 
 // kurir ===========================================================
 Route::resource('kurir/', 'DriverController@index');
