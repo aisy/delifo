@@ -17,321 +17,385 @@ use App\Http\Controllers\Controller;
 
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $data = Order::all();
+  /**
+  * Display a listing of the resource.
+  *
+  * @return \Illuminate\Http\Response
+  */
+  public function index()
+  {
+    $data = Order::all();
 
-        return View::make('order/order', compact('data'));
-        // return view('head');
-        // return view('navbar');
+    return View::make('order/order', compact('data'));
+    // return view('head');
+    // return view('navbar');
+  }
+
+  /**
+  * Show the form for creating a new resource.
+  *
+  * @return \Illuminate\Http\Response
+  */
+  public function create()
+  {
+    //
+  }
+
+  public function get_all(){
+    $data = Order::all();
+    return Response::json($data, 200);
+  }
+
+  /**
+  * Store a newly created resource in storage.
+  *
+  * @param  \Illuminate\Http\Request  $request
+  * @return \Illuminate\Http\Response
+  */
+
+  public function insert(Request $request){
+    $input = Order::create(array(
+      'alamat'    =>Input::get('alamat'),
+      'deskripsi' =>Input::get('deskripsi'),
+      'tanggal'   =>Input::get('tanggal'),
+      'status'    =>Input::get('status'),
+      'id_user'   =>Auth::user()->id
+    ));
+
+    // $insert = new Order;
+    // $insert->alamat    = Input::get('alamat');
+    // $insert->deskripsi = Input::get('deskripsi');
+    // $insert->tanggal   = Input::get('tanggal');
+    // $insert->status    = Input::get('status');
+    // $insert->id_user   = Auth::user()->id;
+
+    // $cek = $insert->save();
+
+  }
+
+
+  public function detail($id){
+    $data_detail = Detail::where('id_order',$id)->get();
+
+    return Response::view('detail_order/detail_order', compact('data_detail','id'));
+  }
+
+  public function store(Request $request)
+  {
+    //
+  }
+
+  /**
+  * Display the specified resource.
+  *
+  * @param  int  $id
+  * @return \Illuminate\Http\Response
+  */
+  public function show($id)
+  {
+
+  }
+
+  /**
+  * Show the form for editing the specified resource.
+  *
+  * @param  int  $id
+  * @return \Illuminate\Http\Response
+  */
+  public function edit($id){
+    //
+    $data =  Order::where('order.id', $id)
+    ->join('users','users.id', '=', 'order.id_user')->first();
+
+    return View::make('order/edit_order', compact('data', 'id'));
+  }
+
+  /**
+  * Update the specified resource in storage.
+  *
+  * @param  \Illuminate\Http\Request  $request
+  * @param  int  $id
+  * @return \Illuminate\Http\Response
+  */
+  public function update(Request $request, $id)
+  {
+    //
+    $OrderUpdate = Request::all();
+    $order = Order::find($id);
+    $order->update($OrderUpdate);
+
+    return redirect('order/');
+  }
+
+  /**
+  * Remove the specified resource from storage.
+  *
+  * @param  int  $id
+  * @return \Illuminate\Http\Response
+  */
+  public function destroy($id){
+    //
+    Order::find($id)->delete();
+    return redirect('order/');
+  }
+
+
+
+  // ====================== API ===================================
+
+  public function api_show(){
+    $data = Order::all();
+
+    if($data){
+      return Response::json($data);
+    }else{
+      return Response::json(['status'=>'data ']);
+    }
+  }
+
+  public function api_OrderList(){
+    # code...
+
+    $data = Order::where('order.status', 'belum di konfirmasi')
+    ->orderBy('order.tanggal', 'DESC')
+    ->select(['order.id as id_order', 'order.tanggal' , 'users.*'])
+    ->join('users','users.id', '=', 'order.id_user')->get();
+
+    $hasil = json_encode($data);
+    $json  = json_decode($hasil);
+
+    // print_r($json);
+
+    foreach ($json as $key => $value) {
+      echo $value->status;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    // $data2 = Detail::where('id_order', '33')->first();
+    //
+    // if($data){
+    //   $data->setAttribute('detail', $data2);
+    //   return Response::json($data);
+    // }else{
+    //   return Response::json(['status'=>'data tidak ditemukan']);
+    // }
+  }
 
-    public function get_all(){
-        $data = Order::all();
-        return Response::json($data, 200);
-    }
+  public function api_showInvalid(){
+    // $data = Order::where('status', 'belum di konfirmasi')->orderBy('created_at', 'DESC')->get();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    $data = Order::where('order.status', 'belum di konfirmasi')
+    ->orderBy('order.tanggal', 'DESC')
+    ->select(['order.id as id_order', 'order.tanggal' , 'users.*'])
+    ->join('users','users.id', '=', 'order.id_user')->get();
 
-    public function insert(Request $request){
-        $input = Order::create(array(
-            'alamat'    =>Input::get('alamat'),
-            'deskripsi' =>Input::get('deskripsi'),
-            'tanggal'   =>Input::get('tanggal'),
-            'status'    =>Input::get('status'),
-            'id_user'   =>Auth::user()->id
-            ));
+    if($data){
+      return Response::json($data);
+    }else{
+      return Response::json(['status'=>'data ']);
 
-       // $insert = new Order;
-       // $insert->alamat    = Input::get('alamat');
-       // $insert->deskripsi = Input::get('deskripsi');
-       // $insert->tanggal   = Input::get('tanggal');
-       // $insert->status    = Input::get('status');
-       // $insert->id_user   = Auth::user()->id;
-
-       // $cek = $insert->save();
 
     }
+  }
 
+  public function api_orderUser($id){
+    try {
 
-    public function detail($id){
-        $data_detail = Detail::where('id_order',$id)->get();
+      $data = Order::where('id_user', $id)
+      ->join('users','users.id', '=', 'order.id_user')
+      ->select(['order.id as id_order', 'order.tanggal' , 'users.*'])
+      ->orderBy('status', 'ASC')
+      ->get();
 
-        return Response::view('detail_order/detail_order', compact('data_detail','id'));
+      if(count($data)>=1){
+        return Response::json($data);
+      }else{
+        return Response::json([['status'=>'tidak ada data']]);
+      }
+
+    } catch (Exception $e) {
+      echo $e->getMessage();
     }
 
-    public function store(Request $request)
-    {
-        //
+  }
+
+  public function api_detailUser($id){
+    try {
+
+      $data   = Order::where('order.id', $id)
+      ->join('users', 'users.id', '=', 'order.id_user')
+      ->select(['order.id as id_order', 'order.tanggal' , 'order.longitude', 'order.latitude', 'order.status', 'order.id_driver' , 'users.*'])
+      ->first();
+
+      $data2 = Detail::where('id_order', $id)->get();
+
+      if(count($data)>=1){
+        $data->setAttribute('order', $data2);
+        return Response::json($data);
+      }else{
+        return Response::json(['status'=>'data tdak ada']);
+      }
+
+    } catch (Exception $e) {
+      echo $e->getMessage();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
+  }
 
-    }
+  //konfirmasi order
+  public function api_konfirmasi(Request $request, $id){
+    try {
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id){
-        //
-        $data =  Order::where('order.id', $id)
-            ->join('users','users.id', '=', 'order.id_user')->first();
+      // $id = Input::get('id_order');
 
-        return View::make('order/edit_order', compact('data', 'id'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-        $OrderUpdate = Request::all();
-        $order = Order::find($id);
-        $order->update($OrderUpdate);
-
-        return redirect('order/');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id){
-        //
-        Order::find($id)->delete();
-        return redirect('order/');
-    }
-
-
-
-// ====================== API ===================================
-
-    public function api_show(){
-        $data = Order::all();
-
-        if($data){
-            return Response::json($data);
-        }else{
-            return Response::json(['status'=>'data ']);
-        }
-    }
-
-    public function api_showInvalid(){
-        // $data = Order::where('status', 'belum di konfirmasi')->orderBy('created_at', 'DESC')->get();
-
-        $data = Order::where('order.status', 'belum di konfirmasi')
-            ->orderBy('order.tanggal', 'DESC')
-            ->select(['order.id as id_order', 'order.tanggal' , 'users.*'])
-            ->join('users','users.id', '=', 'order.id_user')->get();
-
-        if($data){
-            return Response::json($data);
-        }else{
-            return Response::json(['status'=>'data ']);
-        }
-    }
-
-    public function api_orderUser($id){
-        try {
-
-            $data = Order::where('id_user', $id)
-            ->join('users','users.id', '=', 'order.id_user')
-            ->orderBy('status', 'ASC')
-            ->get();
-
-            if(count($data)>=1){
-                return Response::json($data);
-            }else{
-                return Response::json([['status'=>'tidak ada data']]);
-            }
-
-        } catch (Exception $e) {
-            echo $e->getMessage();
-        }
-
-    }
-
-    //konfirmasi order
-    public function api_konfirmasi(Request $request, $id){
-        try {
-
-            // $id = Input::get('id_order');
-
-            $req  = array(
-                'id_driver' => Input::get('id_driver'),
-                'status'    => 'sudah di konfirmasi'
-            );
-            $book = Order::find($id);
-            $book->update($req);
-
-            return response(['status'=>"sukses"]);
-
-        } catch (Exception $e) {
-
-            echo $e->getMessage();
-
-        }
-    }
-
-    public function item_konfirmasi(Request $request, $id){
-
-      $req = array(
-        'status' => "sudah di konfirmasi"
+      $req  = array(
+        'id_driver' => Input::get('id_driver'),
+        'status'    => 'sudah di konfirmasi'
       );
-
-      $book = DETAIL::find($id)->update($req);
+      $book = Order::find($id);
+      $book->update($req);
 
       return response(['status'=>"sukses"]);
+
+    } catch (Exception $e) {
+
+      echo $e->getMessage();
+
     }
+  }
+
+  public function item_konfirmasi(Request $request, $id){
+
+    $req = array(
+      'status' => "sudah di konfirmasi"
+    );
+
+    $book = DETAIL::find($id)->update($req);
+
+    return response(['status'=>"sukses"]);
+  }
+
+  public function item_cancel(Request $request, $id){
+
+    $req = array(
+      'status' => "di batalkan"
+    );
+
+    $book = DETAIL::find($id)->update($req);
+
+    return response(['status'=>"sukses"]);
+  }
 
 
-    public function api_find($id){
+  public function api_find($id){
 
-        try {
+    try {
 
-            $data   = Order::where('order.id', $id)
-            ->join('users', 'users.id', '=', 'order.id_user')
-            ->select(['order.id as id_order', 'order.tanggal' , 'order.longitude', 'order.latitude', 'order.status', 'order.id_driver' , 'users.*'])
-            ->first();
+      $data   = Order::where('order.id', $id)
+      ->join('users', 'users.id', '=', 'order.id_user')
+      ->select(['order.id as id_order', 'order.tanggal' , 'order.longitude', 'order.latitude', 'order.status', 'order.id_driver' , 'users.*'])
+      ->first();
 
-            $data2 = Detail::where('id_order', $id)->get();
+      $data2 = Detail::where('id_order', $id)->orderBy('status', 'DESC')->get();
 
-            if(count($data)>=1){
-               $data->setAttribute('order', $data2);
-               return Response::json($data);
-           }else{
+      if(count($data)>=1){
+        $data->setAttribute('order', $data2);
+        return Response::json($data);
+      }else{
 
-            return Response::json(['status'=>'data tdak ada']);
-        }
+        return Response::json(['status'=>'data tdak ada']);
+      }
 
     } catch (Exception $e) {
 
     }
 
-}
+  }
 
-public function api_insert(Request $request){
+  public function api_insert(Request $request){
     $input = Order::create(array(
-        'alamat'    =>Input::get('alamat'),
-        'deskripsi' =>Input::get('deskripsi'),
-        'tanggal'   =>Input::get('tanggal'),
-        'status'    =>Input::get('status'),
-        'id_user'   =>Auth::user()->id
-        ));
+      'alamat'    =>Input::get('alamat'),
+      'deskripsi' =>Input::get('deskripsi'),
+      'tanggal'   =>Input::get('tanggal'),
+      'status'    =>Input::get('status'),
+      'id_user'   =>Auth::user()->id
+    ));
 
     if($input){
-        return Response::json(['status'=>'sukses']);
+      return Response::json(['status'=>'sukses']);
     }else{
-        return Response::json(['status'=>'gagal']);
+      return Response::json(['status'=>'gagal']);
     }
-}
+  }
 
-public function api_edit($id){
+  public function api_edit($id){
     $edit = Order::find($id)->first();
 
     if($edit){
-        return Response::json($edit);
+      return Response::json($edit);
     }else{
-        return Response::json(['status'=>'data tidak ditemukan']);
+      return Response::json(['status'=>'data tidak ditemukan']);
     }
-}
+  }
 
-public function api_update(Request $request, $id){
+  public function api_update(Request $request, $id){
 
     //mengambil data dari field secara keseluruhan
     $req = $request->all();
 
     $book = Order::find($id);
     $book->update($req);
-}
+  }
 
-public function api_delete($id){
+  public function api_delete($id){
     $delete = Order::find($id);
     $delete->delete($id);
-}
+  }
 
-    // DETAIL ORDER
+  // DETAIL ORDER
 
-public function insertDO(Request $request){
+  public function insertDO(Request $request){
 
-        // $data_json = json_decode($request->input("order")); //baca konten post json
-        $data_json = Request::input("order"); //baca konten post json
+    // $data_json = json_decode($request->input("order")); //baca konten post json
+    $data_json = Request::input("order"); //baca konten post json
 
-        // $id = date('Ymdis');
+    // $id = date('Ymdis');
 
-        $insert1 = Order::create(
-            array(
-                // 'id_order'  => $id,
-                // 'id'        => $id,
-                'tanggal'   => Request::input('tanggal'),
-                'status'    => 'belum di konfirmasi',
-                'id_user'   => Request::input('id_user'),
-                'longitude' => Request::input('longitude'),
-                'latitude'  => Request::input('latitude')
-                )
-            );
+    $insert1 = Order::create(
+      array(
+        // 'id_order'  => $id,
+        // 'id'        => $id,
+        'tanggal'   => Request::input('tanggal'),
+        'status'    => 'belum di konfirmasi',
+        'id_user'   => Request::input('id_user'),
+        'longitude' => Request::input('longitude'),
+        'latitude'  => Request::input('latitude')
+        )
+      );
 
-        $id = Order::orderBy('id','desc')->groupBy('id')->first();
+      $id = Order::orderBy('id','desc')->groupBy('id')->first();
 
-        foreach ($data_json as $key =>$value) {
-            $insert2 = Detail::create(
-                array(
-                    'id_order'      => $id->id,
-                    'nama_order'    => $value['nama_order'],
-                    'keterangan'    => $value['keterangan'],
-                    'alamat'        => $value['alamat'],
-                    'longitude'     => $value['longitude'],
-                    'latitude'      => $value['latitude'],
-                    'status'        => 'belum di konfirmasi'
-                    )
-                );
-        }
+      foreach ($data_json as $key =>$value) {
+        $insert2 = Detail::create(
+          array(
+            'id_order'      => $id->id,
+            'nama_order'    => $value['nama_order'],
+            'keterangan'    => $value['keterangan'],
+            'alamat'        => $value['alamat'],
+            'longitude'     => $value['longitude'],
+            'latitude'      => $value['latitude'],
+            'status'        => 'belum di konfirmasi'
+          )
+        );
+      }
 
-        if($insert1 && $insert2){
+      if($insert1 && $insert2){
 
-            return Response::json(['status_response'=>'sukses']);
+        return Response::json(['status_response'=>'sukses']);
 
-        }else{
-            return Response::json(['status_response'=>'gagal']);
-        }
+      }else{
+        return Response::json(['status_response'=>'gagal']);
+      }
 
     }
 
-}
+  }

@@ -45,7 +45,6 @@ Route::delete('user/hapus/{id}', 'UserController@delete');
 
 Route::post('user/login', 'UserController@log');
 
-
 // pengguna ========================================================
 Route::resource('pengguna/', 'UserController');
 
@@ -68,9 +67,14 @@ Route::post('order/tambah-data', 'OrderController@insertDO');
 Route::get('order/api/data-order', 'OrderController@api_show');
 Route::get('order/api/data-order/{id}', 'OrderController@api_find');
 Route::get('order/api/user/{id}', 'OrderController@api_orderUser');
+Route::get('order/api/user-order/{id}', 'OrderController@api_detailUser');
 // Route::post('order/api/konfirmasi/{id}', 'OrderController@api_konfirmasi');
+
+Route::get('order/api/data-order2','OrderController@api_OrderList');
+
 Route::patch('order/api/konfirmasi/{id}', 'OrderController@api_konfirmasi');
 Route::patch('order/api/konfirmasi-item/{id}', 'OrderController@item_konfirmasi');
+Route::patch('order/api/cancel-item/{id}', 'OrderController@item_cancel');
 
 // kurir ===========================================================
 Route::resource('kurir/', 'DriverController@index');
