@@ -25,14 +25,14 @@ class CtreateOrder1Table extends Migration
         });
 
         Schema::table('order', function ($table){
-            $table->foreign('id_user')
+            $table->foreign('user_id')
             ->references('id')
             ->on('users')
             ->onDelete('cascade');
         });
 
         Schema::table('order', function ($table){
-            $table->foreign('id_driver')
+            $table->foreign('driver_id')
             ->references('id')
             ->on('driver')
             ->onDelete('cascade');
