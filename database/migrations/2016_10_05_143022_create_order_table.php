@@ -14,7 +14,7 @@ class CreateOrderTable extends Migration
     {
         Schema::create('detail_order', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_order');
+            $table->integer('order_id');
             $table->text('nama_order');
             $table->text('keterangan');
             $table->text('status');

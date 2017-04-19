@@ -59,7 +59,7 @@ class OrderController extends Controller
       'deskripsi' =>Input::get('deskripsi'),
       'tanggal'   =>Input::get('tanggal'),
       'status'    =>Input::get('status'),
-      'id_user'   =>Auth::user()->id
+      'user_id'   =>Auth::user()->id
     ));
 
     // $insert = new Order;
@@ -105,7 +105,7 @@ class OrderController extends Controller
   public function edit($id){
     //
     $data =  Order::where('order.id', $id)
-    ->join('users','users.id', '=', 'order.id_user')->first();
+    ->join('users','users.id', '=', 'order.user_id')->first();
 
     return View::make('order/edit_order', compact('data', 'id'));
   }
@@ -159,25 +159,26 @@ class OrderController extends Controller
     $data = Order::where('order.status', 'belum di konfirmasi')
     ->orderBy('order.tanggal', 'DESC')
     ->select(['order.id as id_order', 'order.tanggal' , 'users.*'])
-    ->join('users','users.id', '=', 'order.id_user')->get();
+    ->join('users','users.id', '=', 'order.user_id')
+    ->with('detail_order')
+    ->get();
 
-    $hasil = json_encode($data);
-    $json  = json_decode($hasil);
+    // foreach ($data as $key => $value) {
+    //   $data_detail   = Detail::where('id_order', $value->id_order)->first();
+    //
+    //   $data_banyak[] = array_merge()
+    //
+    // }
+    //
+    // return Response::json($data_banyak);
 
-    // print_r($json);
-
-    foreach ($json as $key => $value) {
-      echo $value->status;
+    if($data){
+      // $data->setAttribute('detail', $data_banyak);
+      return Response::json($data);
+    }else{
+      return Response::json(['status'=>'data tidak ditemukan']);
     }
 
-    // $data2 = Detail::where('id_order', '33')->first();
-    //
-    // if($data){
-    //   $data->setAttribute('detail', $data2);
-    //   return Response::json($data);
-    // }else{
-    //   return Response::json(['status'=>'data tidak ditemukan']);
-    // }
   }
 
   public function api_showInvalid(){
@@ -186,7 +187,7 @@ class OrderController extends Controller
     $data = Order::where('order.status', 'belum di konfirmasi')
     ->orderBy('order.tanggal', 'DESC')
     ->select(['order.id as id_order', 'order.tanggal' , 'users.*'])
-    ->join('users','users.id', '=', 'order.id_user')->get();
+    ->join('users','users.id', '=', 'order.user_id')->get();
 
     if($data){
       return Response::json($data);
@@ -201,7 +202,7 @@ class OrderController extends Controller
     try {
 
       $data = Order::where('id_user', $id)
-      ->join('users','users.id', '=', 'order.id_user')
+      ->join('users','users.id', '=', 'order.user_id')
       ->select(['order.id as id_order', 'order.tanggal' , 'users.*'])
       ->orderBy('status', 'ASC')
       ->get();
@@ -222,8 +223,8 @@ class OrderController extends Controller
     try {
 
       $data   = Order::where('order.id', $id)
-      ->join('users', 'users.id', '=', 'order.id_user')
-      ->select(['order.id as id_order', 'order.tanggal' , 'order.longitude', 'order.latitude', 'order.status', 'order.id_driver' , 'users.*'])
+      ->join('users', 'users.id', '=', 'order.user_id')
+      ->select(['order.id as id_order', 'order.tanggal' , 'order.longitude', 'order.latitude', 'order.status', 'order.driver_id' , 'users.*'])
       ->first();
 
       $data2 = Detail::where('id_order', $id)->get();
@@ -248,7 +249,7 @@ class OrderController extends Controller
       // $id = Input::get('id_order');
 
       $req  = array(
-        'id_driver' => Input::get('id_driver'),
+        'driver_id' => Input::get('id_driver'),
         'status'    => 'sudah di konfirmasi'
       );
       $book = Order::find($id);
@@ -291,7 +292,7 @@ class OrderController extends Controller
     try {
 
       $data   = Order::where('order.id', $id)
-      ->join('users', 'users.id', '=', 'order.id_user')
+      ->join('users', 'users.id', '=', 'order.user_id')
       ->select(['order.id as id_order', 'order.tanggal' , 'order.longitude', 'order.latitude', 'order.status', 'order.id_driver' , 'users.*'])
       ->first();
 
@@ -317,7 +318,7 @@ class OrderController extends Controller
       'deskripsi' =>Input::get('deskripsi'),
       'tanggal'   =>Input::get('tanggal'),
       'status'    =>Input::get('status'),
-      'id_user'   =>Auth::user()->id
+      'user_id'   =>Auth::user()->id
     ));
 
     if($input){
@@ -366,7 +367,7 @@ class OrderController extends Controller
         // 'id'        => $id,
         'tanggal'   => Request::input('tanggal'),
         'status'    => 'belum di konfirmasi',
-        'id_user'   => Request::input('id_user'),
+        'user_id'   => Request::input('id_user'),
         'longitude' => Request::input('longitude'),
         'latitude'  => Request::input('latitude')
         )
@@ -377,7 +378,7 @@ class OrderController extends Controller
       foreach ($data_json as $key =>$value) {
         $insert2 = Detail::create(
           array(
-            'id_order'      => $id->id,
+            'order_id'      => $id->id,
             'nama_order'    => $value['nama_order'],
             'keterangan'    => $value['keterangan'],
             'alamat'        => $value['alamat'],

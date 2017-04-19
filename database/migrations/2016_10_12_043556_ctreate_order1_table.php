@@ -16,8 +16,8 @@ class CtreateOrder1Table extends Migration
             $table->increments('id');
             $table->date('tanggal');
             $table->string('status');
-            $table->integer('id_user');
-            $table->integer('id_driver')->nullable();
+            $table->integer('user_id');
+            $table->integer('driver_id')->nullable();
             // table->integer('votes')->unsigned()->default(value)->nullable();
             $table->string('longitude');
             $table->string('latitude');
