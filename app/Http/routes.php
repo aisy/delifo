@@ -95,7 +95,7 @@ Route::post('kurir/api/login', 'DriverController@login');
 
 // Admin ===========================================================
 Route::get('admin/', 'AdminController@list_admin');
-Route::post('admin/', 'AdminController@create');
+Route::post('admin/', 'AdminController@create2');
 Route::get('admin/update/{id}', 'AdminController@edit');
 Route::patch('admin/proses-update/{id}', 'AdminController@update');
 Route::delete('admin/hapus/{id}', ['as'=>'admin.hapus_data.delete','uses'=>'AdminController@destroy']);

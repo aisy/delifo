@@ -79,6 +79,18 @@ class AdminController extends Controller{
         return Redirect::to('Admin/');
     }
 
+    public function create2(Request $data){
+        $insert =  Admin::create(array(
+            'nama_lengkap'  => $data['nama_lengkap'],
+            'username'      => $data['username'],
+            // 'email' => $data['email'],
+            'password'      => bcrypt($data['password']),
+            'jkel'          => $data['jkel'],
+            'telpon'        => $data['telpon']
+            ));
+        return Redirect::to('home/');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
