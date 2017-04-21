@@ -23,4 +23,8 @@ class Order extends Model
 		return $this->hasMany(DetailOrder::class);
 	}
 
+	public function order(){
+		return $this->hasMany(DetailOrder::class);
+	}
+
 }

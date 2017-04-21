@@ -158,19 +158,9 @@ class OrderController extends Controller
 
     $data = Order::where('order.status', 'belum di konfirmasi')
     ->orderBy('order.tanggal', 'DESC')
-    ->select(['order.id as id_order', 'order.tanggal' , 'users.*'])
-    ->join('users','users.id', '=', 'order.user_id')
+
     ->with('detail_order')
     ->get();
-
-    // foreach ($data as $key => $value) {
-    //   $data_detail   = Detail::where('id_order', $value->id_order)->first();
-    //
-    //   $data_banyak[] = array_merge()
-    //
-    // }
-    //
-    // return Response::json($data_banyak);
 
     if($data){
       // $data->setAttribute('detail', $data_banyak);
@@ -293,10 +283,10 @@ class OrderController extends Controller
 
       $data   = Order::where('order.id', $id)
       ->join('users', 'users.id', '=', 'order.user_id')
-      ->select(['order.id as id_order', 'order.tanggal' , 'order.longitude', 'order.latitude', 'order.status', 'order.id_driver' , 'users.*'])
+      ->select(['order.id as order_id', 'order.tanggal' , 'order.longitude', 'order.latitude', 'order.status', 'order.driver_id' , 'users.*'])
       ->first();
 
-      $data2 = Detail::where('id_order', $id)->orderBy('status', 'DESC')->get();
+      $data2 = Detail::where('order_id', $id)->orderBy('status', 'DESC')->get();
 
       if(count($data)>=1){
         $data->setAttribute('order', $data2);
