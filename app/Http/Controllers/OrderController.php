@@ -217,7 +217,7 @@ class OrderController extends Controller
       ->select(['order.id as id_order', 'order.tanggal' , 'order.longitude', 'order.latitude', 'order.status', 'order.driver_id' , 'users.*'])
       ->first();
 
-      $data2 = Detail::where('id_order', $id)->get();
+      $data2 = Detail::where('order_id', $id)->get();
 
       if(count($data)>=1){
         $data->setAttribute('order', $data2);
@@ -344,6 +344,13 @@ class OrderController extends Controller
 
   // DETAIL ORDER
 
+  public function lol(){
+    # code...
+    $id = Order::orderBy('id','desc')->groupBy('id')->first();
+
+    return $id->id;
+  }
+
   public function insertDO(Request $request){
 
     // $data_json = json_decode($request->input("order")); //baca konten post json
@@ -357,7 +364,7 @@ class OrderController extends Controller
         // 'id'        => $id,
         'tanggal'   => Request::input('tanggal'),
         'status'    => 'belum di konfirmasi',
-        'user_id'   => Request::input('id_user'),
+        'user_id'   => Request::input('user_id'),
         'longitude' => Request::input('longitude'),
         'latitude'  => Request::input('latitude')
         )
