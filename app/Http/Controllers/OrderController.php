@@ -158,7 +158,7 @@ class OrderController extends Controller
 
     $data = Order::where('order.status', 'belum di konfirmasi')
     ->orderBy('order.tanggal', 'DESC')
-
+    ->with('User')
     ->with('detail_order')
     ->get();
 
@@ -375,7 +375,7 @@ class OrderController extends Controller
       foreach ($data_json as $key =>$value) {
         $insert2 = Detail::create(
           array(
-            'order_id'      => $id->id,
+            'order_id'      => $id['id'],
             'nama_order'    => $value['nama_order'],
             'keterangan'    => $value['keterangan'],
             'alamat'        => $value['alamat'],

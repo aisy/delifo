@@ -16,7 +16,11 @@ class Order extends Model
 	protected $fillable = ['alamat', 'deskripsi', 'tanggal', 'status', 'user_id', 'driver_id', 'longitude', 'latitude'];
 
 	public function user(){
-		return $this->belongsTo('User');
+		return $this->belongsTo(User::class);
+	}
+
+	public function data_user(){
+		return $this->hasOne(User::class);
 	}
 
 	public function detail_order(){

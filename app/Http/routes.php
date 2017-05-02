@@ -87,7 +87,18 @@ Route::get('kurir/data_order/{id}', 'OrderController@api_find');
 Route::patch('kurir/ubah-data/{id}', 'DriverController@update');
 Route::delete('kurir/hapus-data/{id}', ['as'=>'kurir.hapus_data.delete','uses'=>'DriverController@destroy']);
 
-// === kurir API
+
+// =============================================================================
+// RESTORAN
+// =============================================================================
+Route::resource('restoran', 'RestoranController');
+Route::post('restoran', 'RestoranController@create');
+Route::patch('restoran/{id}', 'RestoranController@update');
+Route::delete('restoran/{id}','RestoranController@delete');
+
+// =============================================================================
+// KURIR
+// =============================================================================
 // Route::post('kurir/login', 'DriverController@login');
 Route::post('kurir/data-kurir', 'DriverController@show');
 Route::get('kurir/api/data-order', 'OrderController@api_showInvalid');
