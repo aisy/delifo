@@ -93,8 +93,12 @@ Route::delete('kurir/hapus-data/{id}', ['as'=>'kurir.hapus_data.delete','uses'=>
 // =============================================================================
 Route::resource('restoran', 'RestoranController');
 Route::post('restoran', 'RestoranController@create');
-Route::patch('restoran/{id}', 'RestoranController@update');
+Route::get('restoran-edit/{id}', 'RestoranController@edit');
+Route::patch('restoran-edit/{id}', 'RestoranController@update');
 Route::delete('restoran/{id}','RestoranController@delete');
+
+// API
+Route::get('restoran/api/getAll', 'RestoranController@api_result_all');
 
 // =============================================================================
 // KURIR

@@ -18,44 +18,43 @@
         <h3 class="panel-title"><i class="fa fa-cutlery"></i> Data Restoran</h3>
       </div>
       <div class="panel-body">
-          <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Nama Restoran</th>
-                  <th>Alamat</th>
-                  <th>No. Telp</th>
-                  <th>Pilihan</th>
-                </tr>
-              </thead>
-                <?php $i =1 ?>
-                @foreach ($data as $restoran)
-                  <td>{{ $i }}</td>
-                  <td>{{ $restoran->nama_restoran }}</td>
-                  <td>{{ $restoran->formatted_address }}</td>
-                  <td>{{ $restoran->no_telp }}</td>
-                  <td>
-                    <div class="btn-group btn-group-sm">
-                      <a href="{{ url('') }}" type="button" class="btn btn-info">
-                        <i class="fa fa-list"></i>
-                      </a>
-                      <a href="{{ url('') }}" type="button" class="btn btn-warning">
-                        <i class="fa fa-edit"></i>
-                      </a>
-                      <button type="button" class="btn btn-danger">
-                        <i class="fa fa-trash"></i>
-                      </button>
-                    </div>
-                  </td>
-                <?php $i++; ?>
-                @endforeach
-              <tbody>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nama Restoran</th>
+              <th>Alamat</th>
+              <th>No. Telp</th>
+              <th>Pilihan</th>
+            </tr>
+          </thead>
 
-              </tbody>
-          </table>
-      </div>
-      <div class="panel-footer">
-
+          <tbody>
+          <?php $i =1 ?>
+          @foreach ($data as $restoran)
+            <tr>
+              <td>{{ $i }}</td>
+              <td>{{ $restoran->nama_restoran }}</td>
+              <td>{{ $restoran->formatted_address }}</td>
+              <td>{{ $restoran->no_telp }}</td>
+              <td>
+                <div class="btn-group btn-group-sm">
+                  <a href="{{ url('menu/'.$restoran->id) }}" type="button" class="btn btn-info">
+                    <i class="fa fa-list"></i>
+                  </a>
+                  <a href="{{ url('restoran-edit/'.$restoran->id) }}" type="button" class="btn btn-warning">
+                    <i class="fa fa-edit"></i>
+                  </a>
+                  <button type="button" class="btn btn-danger">
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <?php $i++; ?>
+          @endforeach
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -150,35 +149,6 @@
 </script>
 
 <script>
-// $(function(){
-//   $("#geocomplete").geocomplete({
-//     map: ".map_canvas",
-//     details: "form",
-//     mapOptions: {
-//       zoom: 30
-//     },
-//     types: ["geocode", "establishment"],
-//     markerOptions: {
-//       draggable: true
-//     }
-//   });
-//
-//   $("#geocomplete").bind("geocode:dragged", function(event, latLng){
-//     $("input[name=lat]").val(latLng.lat());
-//     $("input[name=lng]").val(latLng.lng());
-//     $("#reset").show();
-//   });
-//
-//   $("#reset").click(function(){
-//     $("#geocomplete").geocomplete("resetMarker");
-//     $("#reset").hide();
-//     return false;
-//   });
-//
-//   $("#find").click(function(){
-//     $("#geocomplete").trigger("geocode");
-//   });
-// });
 
 $(function(){
   $("#geocomplete").geocomplete({
