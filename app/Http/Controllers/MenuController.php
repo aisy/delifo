@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Menu as Menu;
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -14,9 +16,11 @@ class MenuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index($id){
+
+        $data = Menu::where('restoran_id',$id)->first();
+        return View::make('menu/menu');
+
     }
 
     /**
@@ -24,9 +28,10 @@ class MenuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create(Request $request){
         //
+        $data   = $request->all();
+        $insert = Menu::create($data);
     }
 
     /**
@@ -60,6 +65,8 @@ class MenuController extends Controller
     public function edit($id)
     {
         //
+        $data   = Menu::find($id);
+
     }
 
     /**
@@ -69,8 +76,10 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
+
+      $data   = $request->all();
+      $update = Menu::find($id)->update($data);
         //
     }
 
@@ -83,5 +92,6 @@ class MenuController extends Controller
     public function destroy($id)
     {
         //
+        Menu::find($id)->delete();
     }
 }
