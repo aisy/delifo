@@ -100,11 +100,13 @@ Route::delete('restoran/{id}','RestoranController@delete');
 // API
 Route::get('restoran/api/getAll', 'RestoranController@api_result_all');
 Route::get('restoran/api/get', 'RestoranController@api_result_restoran');
+Route::post('restoran/api/post', 'RestoranController@api_post');
 
 // =============================================================================
 // MENU
 // =============================================================================
 Route::get('menu/{id}', 'MenuController@index');
+Route::post('menu/{id}', 'MenuController@create');
 
 // =============================================================================
 // KURIR

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Menu as Menu;
 
+use View;
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -18,8 +20,8 @@ class MenuController extends Controller
      */
     public function index($id){
 
-        $data = Menu::where('restoran_id',$id)->first();
-        return View::make('menu/menu');
+        $data = Menu::where('restoran_id',$id)->get();
+        return View::make('menu/menu', compact('id','data'));
 
     }
 
@@ -30,8 +32,24 @@ class MenuController extends Controller
      */
     public function create(Request $request){
         //
-        $data   = $request->all();
-        $insert = Menu::create($data);
+
+        $data        = $request->all();
+        $restoran_id = $request->input('restoran_id');
+        $insert      = Menu::create($data);
+
+        // upload file
+        $file = $request->file('input-file-preview');
+
+        if($file == NULL){
+            $name_file = " ";
+        }else{
+            $name_file      = $file->getClientOriginalName(); //dapat nama file dari $file
+            $destination    = public_path().'/Menu'; //lokasi folder yang akan di upload
+
+            $file->move($destination, $name_file);
+        }
+
+        return redirect('menu/'.$restoran_id);
     }
 
     /**
@@ -80,7 +98,20 @@ class MenuController extends Controller
 
       $data   = $request->all();
       $update = Menu::find($id)->update($data);
-        //
+
+      // upload file
+      $file = $request->file('input-file-preview');
+
+      if($file==NULL){
+          $name_file = " ";
+      }else{
+          $name_file      = $file->getClientOriginalName(); //dapat nama file dari $file
+          $destination    = public_path().'/Menu'; //lokasi folder yang akan di upload
+
+          $file->move($destination, $name_file);
+      }
+
+      return redirect('menu/'.$restoran_id);
     }
 
     /**

@@ -17,8 +17,10 @@ class CreateMenuTable extends Migration
           $table->increments('id');
           $table->integer('restoran_id');
           $table->string('nama_menu');
+          $table->string('gambar');
           $table->integer('harga');
           $table->string('deskripsi');
+          $table->timestamps();
         });
     }
 

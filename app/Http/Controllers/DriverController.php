@@ -58,8 +58,6 @@ class DriverController extends Controller{
             $file->move($destination, $name_file);
         }
 
-
-
         $insert = Driver::create(
             array(
                 'nama_lengkap'  => Input::get('nama_lengkap'),

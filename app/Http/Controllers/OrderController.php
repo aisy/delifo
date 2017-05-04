@@ -149,7 +149,7 @@ class OrderController extends Controller
     if($data){
       return Response::json($data);
     }else{
-      return Response::json(['status'=>'data ']);
+      return Response::json(['status'=>'data tidak ada']);
     }
   }
 

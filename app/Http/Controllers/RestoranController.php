@@ -120,5 +120,15 @@ class RestoranController extends Controller
     return Response::json($restoran);
   }
 
+  public function api_post(Request $request){
+    $data = $request->all();
+    $insert = Restoran::create($data);
+
+    if($insert){
+      return Response::json(['data'=>'Sukses']);
+    }else{
+      return Response::json(['data'=>'Tidak bisa dimasukkan']);
+    }
+  }
 
 }

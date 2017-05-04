@@ -1,5 +1,11 @@
 @extends('master-page')
 
+@section('css')
+{{-- <link rel="stylesheet" href="{{ URL::to('Asset/css/jquery.dataTables.min.css') }}" media="screen" title="no title"> --}}
+<link rel="stylesheet" href="{{ URL::to('Asset/css/dataTables.bootstrap.min.css') }}" media="screen" title="no title">
+
+@endsection
+
 @section('link_nav')
   <li><a href="{{ url('home') }}"><i class="fa fa-home"></i> Halaman Utama</a></li>
   <li><a href="{{ url('order') }}"><i class="fa fa-inbox"></i> Order</a></li>
@@ -133,7 +139,7 @@
 
   <script src="{{ URL::to('Asset/js/jquery.dataTables.js') }}" charset="utf-8"></script>
   <script src="{{ URL::to('Asset/js/dataTables.bootstrap.min.js') }}" charset="utf-8"></script>
-  <script src="{{ URL::to('Asset/js/uploadandpreviewphoto.js') }}" charset="utf-8"></script>
+  {{-- <script src="{{ URL::to('Asset/js/uploadandpreviewphoto.js') }}" charset="utf-8"></script> --}}
   <script type="text/javascript">
   $(document).ready(function(){
 
