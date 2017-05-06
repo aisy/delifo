@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Menu as Menu;
 
 use View;
+use Response;
 
 use Illuminate\Http\Request;
 
@@ -125,4 +126,42 @@ class MenuController extends Controller
         //
         Menu::find($id)->delete();
     }
+
+
+    // =========================================================================
+    // API MENU
+    // =========================================================================
+
+    public function getByRestoran($id){
+      $data = Menu::where('restoran_id', $id)->get();
+      return Response::json($data);
+    }
+
+    public function post(Request $request){
+
+        $data        = $request->all();
+        $restoran_id = $request->input('restoran_id');
+        $insert      = Menu::create($data);
+
+        if($data){
+          // upload file
+          $file = $request->file('input-file-preview');
+
+          if($file == NULL){
+              $name_file = " ";
+          }else{
+              $name_file      = $file->getClientOriginalName(); //dapat nama file dari $file
+              $destination    = public_path().'/Menu'; //lokasi folder yang akan di upload
+
+              $file->move($destination, $name_file);
+          }
+
+          return Response::json(['data'=>'data sukses']);
+        }else{
+          return Response::json(['data'=>'data tidak berhasil']);
+        }
+
+    }
+
+
 }

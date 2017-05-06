@@ -107,6 +107,11 @@ Route::post('restoran/api/post', 'RestoranController@api_post');
 // =============================================================================
 Route::get('menu/{id}', 'MenuController@index');
 Route::post('menu/{id}', 'MenuController@create');
+Route::get('menu-edit/{id}', 'MenuController@edit');
+Route::patch('menu-edit/{id}', 'MenuController@update');
+
+// API
+Route::get('menu/api/getRestoran/{id}', 'MenuController@getByRestoran');
 
 // =============================================================================
 // KURIR
