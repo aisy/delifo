@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Tarif;
+use App\Tarif as Tarif;
 use View;
 
 use App\Http\Requests;
@@ -19,7 +19,10 @@ class TarifController extends Controller
      */
     public function index(){
         //
-        return View::make('tarif/tarif');
+        $id=1;
+        $data = Tarif::find($id)->first();
+        // print_r($data);
+        return View::make('tarif/tarif', compact('data'));
     }
 
     /**
@@ -63,6 +66,7 @@ class TarifController extends Controller
     public function edit($id)
     {
         //
+
     }
 
     /**
@@ -75,6 +79,10 @@ class TarifController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $data = $request->all();
+        $update = Tarif::find($id)->update($data);
+        // echo "LOL";
+        return redirect('tarif');
     }
 
     /**

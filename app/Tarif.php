@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tarif extends Model{
     //
-    protected $table = "order";
+    protected $table = 'tarif';
     protected $fillable = ['jml_jarak','tarif'];
 }

@@ -117,9 +117,9 @@ Route::get('menu/api/getRestoran/{id}', 'MenuController@getByRestoran');
 // =============================================================================
 // TARIF
 // =============================================================================
-Route::resource('tarif', 'TarifController@index');
+// Route::resource('tarif', 'TarifController@index');
 Route::get('tarif', 'TarifController@index');
-Route::patch('tarif', 'TarifController@udpate');
+Route::patch('tarif-ubah/{id}', 'TarifController@update');
 
 // API
 Route::get('tarif/api/data-tarif', 'TarifController@get_api');

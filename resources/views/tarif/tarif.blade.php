@@ -26,9 +26,11 @@
 			<h3 class="panel-title"><i class="fa fa-money"></i> Tarif</h3>
 		</div>
 		<div class="panel-body">
-			<form action="kurir/tambah-data" method="POST" role="form" enctype="multipart/form-data">
+			<form action="{{ url('tarif-ubah/1') }}" method="POST" role="form">
 
 				<input type="hidden" name="_token" value="{{csrf_token()}}" />
+
+        <input name="_method" type="hidden" value="PATCH">
 
 				<div class="form-group">
           <label for="">Jarak Per Meter</label>
@@ -41,7 +43,7 @@
 				</div>
 
 				<div class="form-group">
-					<button type="submit" class="btn btn-primary">Submit</button>
+					<button type="submit" class="btn btn-primary btn-block">Ubah Satuan</button>
 				</div>
 
 			</form>
