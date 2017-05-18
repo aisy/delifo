@@ -95,7 +95,7 @@ Route::resource('restoran', 'RestoranController');
 Route::post('restoran', 'RestoranController@create');
 Route::get('restoran-edit/{id}', 'RestoranController@edit');
 Route::patch('restoran-edit/{id}', 'RestoranController@update');
-Route::delete('restoran/{id}','RestoranController@delete');
+Route::delete('restoran/{id}', ['as'=>'restoran.hapus_data.delete','uses'=>'RestoranController@delete']);
 
 // API
 Route::get('restoran/api/getAll', 'RestoranController@api_result_all');
@@ -109,9 +109,20 @@ Route::get('menu/{id}', 'MenuController@index');
 Route::post('menu/{id}', 'MenuController@create');
 Route::get('menu-edit/{id}', 'MenuController@edit');
 Route::patch('menu-edit/{id}', 'MenuController@update');
+Route::delete('menu/{id}',['as'=>'menu.hapus_data.delete','uses'=>'MenuController@delete']);
 
 // API
 Route::get('menu/api/getRestoran/{id}', 'MenuController@getByRestoran');
+
+// =============================================================================
+// TARIF
+// =============================================================================
+Route::resource('tarif', 'TarifController@index');
+Route::get('tarif', 'TarifController@index');
+Route::patch('tarif', 'TarifController@udpate');
+
+// API
+Route::get('tarif/api/data-tarif', 'TarifController@get_api');
 
 // =============================================================================
 // KURIR

@@ -81,11 +81,12 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id){
         //
-        $data   = Menu::find($id);
 
+        $data   = Menu::where('id', $id)->first();
+        // echo $data['id'];
+        return View::make('menu/edit_menu', compact('data','id'));
     }
 
     /**
@@ -98,6 +99,11 @@ class MenuController extends Controller
     public function update(Request $request, $id){
 
       $data   = $request->all();
+      $data1  = Menu::where('id', $id)->first();
+
+      // print_r($data1);
+
+      $restoran_id = $data1['restoran_id'];
       $update = Menu::find($id)->update($data);
 
       // upload file
@@ -113,6 +119,7 @@ class MenuController extends Controller
       }
 
       return redirect('menu/'.$restoran_id);
+
     }
 
     /**

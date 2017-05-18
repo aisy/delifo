@@ -10,6 +10,7 @@
   <li><a href="{{ url('home') }}"><i class="fa fa-home"></i> Halaman Utama</a></li>
   <li><a href="{{ url('order') }}"><i class="fa fa-inbox"></i> Order</a></li>
   <li class="active"><a href="{{ url('restoran') }}"><i class="fa fa-cutlery"></i> Restoran</a></li>
+  <li><a href="{{ url('tarif') }}"><i class="fa fa-money"></i> Tarif</a></li>
   <li><a href="{{ url('kurir') }}"><i class="fa fa-motorcycle"></i> Kurir</a></li>
   <li><a href="{{ url('admin') }}"><i class="fa fa-users"></i> Admin</a></li>
   <li><a href="{{ url('pengguna') }}"><i class="fa fa-users"></i> Pengguna</a></li>
@@ -31,10 +32,10 @@
             <thead>
               <tr>
                 <th>#</th>
+                <th>Gambar</th>
                 <th>Nama Menu</th>
                 {{-- <th>Gambar</th> --}}
                 <th>Harga</th>
-                <th>Deskripsi</th>
                 <th>Opsi</th>
               </tr>
             </thead>
@@ -43,13 +44,13 @@
               @foreach ($data as $menu)
                 <tr>
                   <td>{{ $i }}</td>
+                    <td> <img src="{{ $menu->gambar }}" alt="" height="150px" width="150px"> </td>
                   <td>{{ $menu->nama_menu }}</td>
                   {{-- <td>{{ $menu->gambar }}</td> --}}
                   <td>{{ $menu->harga }}</td>
-                  <td>{{ $menu->deskripsi }}</td>
                   <td>
                     <div class="btn-group btn-group-sm">
-                      <a href="" type="button" class="btn btn-warning">
+                      <a href="{{ url('menu-edit/'.$menu->id) }}" type="button" class="btn btn-warning">
                         <i class="fa fa-edit"></i>
                       </a>
                       <a href="" type="button" class="btn btn-danger">

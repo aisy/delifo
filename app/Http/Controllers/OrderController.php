@@ -75,7 +75,7 @@ class OrderController extends Controller
 
 
   public function detail($id){
-    $data_detail = Detail::where('id_order',$id)->get();
+    $data_detail = Detail::where('order_id',$id)->get();
 
     return Response::view('detail_order/detail_order', compact('data_detail','id'));
   }

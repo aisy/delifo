@@ -9,6 +9,8 @@
 @section('link_nav')
 <li><a href="{{ url('home') }}"><i class="fa fa-home"></i> Halaman Utama</a></li>
 <li><a href="{{ url('order') }}"><i class="fa fa-inbox"></i> Order</a></li>
+<li><a href="{{ url('restoran') }}"><i class="fa fa-cutlery"></i> Restoran</a></li>
+<li><a href="{{ url('tarif') }}"><i class="fa fa-money"></i> Tarif</a></li>
 <li><a href="{{ url('kurir') }}"><i class="fa fa-motorcycle"></i> Kurir</a></li>
 <li><a href="{{ url('admin') }}"><i class="fa fa-users"></i> Admin</a></li>
 <li class="active"><a href="{{ url('pengguna') }}"><i class="fa fa-users"></i> Pengguna</a></li>
@@ -46,7 +48,6 @@
 						<td>{{ $element->telpon }}</td>
 						{{-- <td class="text-center center">
 
-							
 							<a href="{{ url('user/update/'.$element['id']) }}" class="btn btn-sm btn-warning"><i class="fa fa-edit"> ubah</i>
 							</a>
 
@@ -82,11 +83,11 @@
 
 				<div class="form-group">
 					<input type="text" name="username" class="form-control" placeholder="Username">
-				</div>	
+				</div>
 
 				<div class="form-group">
 					<input type="password" name="password" class="form-control" placeholder="Password">
-				</div>			
+				</div>
 
 				<div class="form-group">
 					<select name="jkel" class="form-control">
