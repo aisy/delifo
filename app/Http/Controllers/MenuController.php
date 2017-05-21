@@ -130,8 +130,12 @@ class MenuController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data1  = Menu::where('id', $id)->first();
+        $restoran_id = $data1['restoran_id'];
+
         Menu::find($id)->delete();
+
+        return redirect('menu/'.$restoran_id);
     }
 
 

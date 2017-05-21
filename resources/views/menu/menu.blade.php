@@ -49,14 +49,18 @@
                   {{-- <td>{{ $menu->gambar }}</td> --}}
                   <td>{{ $menu->harga }}</td>
                   <td>
-                    <div class="btn-group btn-group-sm">
+
                       <a href="{{ url('menu-edit/'.$menu->id) }}" type="button" class="btn btn-warning">
                         <i class="fa fa-edit"></i>
                       </a>
-                      <a href="" type="button" class="btn btn-danger">
+
+                      {!! Form::open(['method' => 'DELETE', 'route' => ['menu.hapus_data.delete',$menu['id']], 'class' => 'form-horizontal']) !!}
+                      {!! Form::button('<i class="fa fa-times"></i>', ['type'=>'submit','class' => 'btn btn-danger']) !!}
+                      {!! Form::close() !!}
+                      {{-- <a href="" type="button" class="btn btn-danger">
                         <i class="fa fa-trash"></i>
-                      </a>
-                    </div>
+                      </a> --}}
+
                   </td>
                 </tr>
                 <?php $i++; ?>

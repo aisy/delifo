@@ -98,7 +98,7 @@ class RestoranController extends Controller
   public function destroy($id)
   {
     //
-    $data = $request->all();
+    // $data = $request->all();
     $udpate = Restoran::find($id)->delete();
     return redirect('restoran/');
   }

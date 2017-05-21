@@ -45,17 +45,18 @@
               <td>{{ $restoran->formatted_address }}</td>
               <td>{{ $restoran->no_telp }}</td>
               <td>
-                <div class="btn-group btn-group-sm">
+
                   <a href="{{ url('menu/'.$restoran->id) }}" type="button" class="btn btn-info">
                     <i class="fa fa-list"></i>
                   </a>
                   <a href="{{ url('restoran-edit/'.$restoran->id) }}" type="button" class="btn btn-warning">
                     <i class="fa fa-edit"></i>
                   </a>
-                  <button type="button" class="btn btn-danger">
-                    <i class="fa fa-trash"></i>
-                  </button>
-                </div>
+
+                  {!! Form::open(['method' => 'DELETE', 'route' => ['restoran.hapus_data.delete',$restoran['id']], 'class' => 'form-horizontal']) !!}
+                  {!! Form::button('<i class="fa fa-times"></i>', ['type'=>'submit','class' => 'btn btn-danger']) !!}
+                  {!! Form::close() !!}
+
               </td>
             </tr>
             <?php $i++; ?>

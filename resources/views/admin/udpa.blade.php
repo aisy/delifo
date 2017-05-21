@@ -36,12 +36,13 @@
 				</div>
 
 				<div class="form-group">
-				     <label>Password Baru</label>
-					<input type="text" name="password" class="form-control" id="" value="{{ $data_edit['password'] }}" placeholder="Input field">
+				     <label>Password Lama</label>
+					<input type="text" name="password_lama" class="form-control" id="" placeholder="Input field">
 				</div>
 
 				<div class="form-group">
-					<input type="text" name="" class="form-control" id="" placeholder="Input field">
+				     <label>Password Baru</label>
+					<input type="text" name="password" class="form-control" id="" placeholder="Input field">
 				</div>
 
 				<button type="submit" class="btn btn-primary">Submit</button>

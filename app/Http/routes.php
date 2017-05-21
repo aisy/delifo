@@ -95,7 +95,7 @@ Route::resource('restoran', 'RestoranController');
 Route::post('restoran', 'RestoranController@create');
 Route::get('restoran-edit/{id}', 'RestoranController@edit');
 Route::patch('restoran-edit/{id}', 'RestoranController@update');
-Route::delete('restoran/{id}', ['as'=>'restoran.hapus_data.delete','uses'=>'RestoranController@delete']);
+Route::delete('restoran-hapus/{id}', ['as'=>'restoran.hapus_data.delete','uses'=>'RestoranController@destroy']);
 
 // API
 Route::get('restoran/api/getAll', 'RestoranController@api_result_all');
@@ -109,7 +109,7 @@ Route::get('menu/{id}', 'MenuController@index');
 Route::post('menu/{id}', 'MenuController@create');
 Route::get('menu-edit/{id}', 'MenuController@edit');
 Route::patch('menu-edit/{id}', 'MenuController@update');
-Route::delete('menu/{id}',['as'=>'menu.hapus_data.delete','uses'=>'MenuController@delete']);
+Route::delete('menu-hapus/{id}',['as'=>'menu.hapus_data.delete','uses'=>'MenuController@destroy']);
 
 // API
 Route::get('menu/api/getRestoran/{id}', 'MenuController@getByRestoran');
