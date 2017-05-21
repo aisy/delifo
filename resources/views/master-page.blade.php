@@ -47,8 +47,7 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{ Auth::user()->username }} <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="#"><i class="fa fa-user"></i> Profil Anda</a></li>
-              <li><a href="#"><i class="fa fa-gear"></i> Ubah data</a></li>
+              <li><a href="admin/update/{{ Auth::user()->id }}"><i class="fa fa-gear"></i> Ubah Profil</a></li>
               <li class="divider"></li>
               <li><a href="{{ url('auth/logout')}}"><i class="fa fa-sign-out"></i> Keluar</a></li>
             </ul>

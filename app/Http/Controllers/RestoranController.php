@@ -69,7 +69,7 @@ class RestoranController extends Controller
   public function edit($id)
   {
     //
-    $data = Restoran::find($id)->first();
+    $data = Restoran::where('id', $id)->first();
     return View::make('restoran/edit_restoran', compact('data','id'));
     return redirect('restoran/');
   }
@@ -86,7 +86,7 @@ class RestoranController extends Controller
     //
     $data = $request->all();
     $udpate = Restoran::find($id)->update($data);
-
+    return redirect('restoran/');
   }
 
   /**
