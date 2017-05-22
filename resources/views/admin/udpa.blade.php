@@ -35,9 +35,28 @@
 					<input type="text" name="username" class="form-control" id="" value="{{ $data_edit['username'] }}" placeholder="Input field">
 				</div>
 
-				<div class="form-group">
+				{{-- <div class="form-group">
 				     <label>Password Lama</label>
 					<input type="text" name="password_lama" class="form-control" id="" placeholder="Input field">
+				</div> --}}
+
+				<div class="form-group">
+						<!-- <input type="text" class="form-control" name="username" value="{{ old('email') }}"> -->
+						<label for="">Jenis Kelamin</label>
+						<select class="form-control" name="jkel">
+								@if ( $data_edit['jkel']=='laki-laki' )
+									<option value="laki-laki" selected="selected">Laki-laki</option>
+									<option value="perempuan">Perempuan</option>
+								@else
+									<option value="perempuan" selected="selected">Perempuan</option>
+									<option value="laki-laki">Laki-laki</option>
+								@endif
+						</select>
+				</div>
+
+				<div class="form-group">
+						<label for="">No. Telp</label>
+						<input type="text" class="form-control" placeholder="No. Telpon" name="telpon" value="{{ $data_edit['telpon'] }}">
 				</div>
 
 				<div class="form-group">

@@ -9,6 +9,7 @@ use App\Order as Order;
 use Illuminate\Http\Request;
 use Auth;
 use View;
+use Hash;
 use Crypt;
 use Validator;
 use Redirect;
@@ -136,35 +137,19 @@ class AdminController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id){
-        //
-
-        $data=Admin::find($id);
-        $dec = bcrypt($request->input('password_lama'));
-
-        // echo $data->password;
-
-        echo Crypt::decrypt($data->password);
-
-        if( $dec == $data->password){
-
-
-          echo "yeah bisa";
 
           // $req = $request->all();
-          // $book = Admin::find($id);
-          // $book->update(array(
-          //     'nama_lengkap'  => $data['nama_lengkap'],
-          //     'username'      => $data['username'],
-          //     // 'email' => $data['email'],
-          //     'password'      => bcrypt($data['password']),
-          //     'jkel'          => $data['jkel'],
-          //     'telpon'        => $data['telpon']
-          //     ));
-        }else{
-          echo "nope<br>";
-          echo $dec." ".$data->password;
-        }
+          $book = Admin::find($id);
+          $book->update(array(
+              'nama_lengkap'  => $request->input('nama_lengkap'),
+              'username'      => $request->input('username'),
+              // 'email' => $request->input()['email'],
+              'password'      => bcrypt($request->input('password')),
+              'jkel'          => $request->input('jkel'),
+              'telpon'        => $request->input('telpon')
+              ));
 
+          return redirect('admin/');
 
     }
 
