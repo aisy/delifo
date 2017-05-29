@@ -191,7 +191,7 @@ class OrderController extends Controller
   public function api_orderUser($id){
     try {
 
-      $data = Order::where('id_user', $id)
+      $data = Order::where('user_id', $id)
       ->join('users','users.id', '=', 'order.user_id')
       ->select(['order.id as id_order', 'order.tanggal' , 'users.*'])
       ->orderBy('status', 'ASC')
@@ -376,7 +376,9 @@ class OrderController extends Controller
         $insert2 = Detail::create(
           array(
             'order_id'      => $id['id'],
-            'nama_order'    => $value['nama_order'],
+            'menu_id'       => $value['menu_id'],
+            'restoran'      => $value['restoran'],
+            'harga'         => $value['harga'],
             'keterangan'    => $value['keterangan'],
             'alamat'        => $value['alamat'],
             'longitude'     => $value['longitude'],
