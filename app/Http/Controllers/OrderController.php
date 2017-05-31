@@ -377,7 +377,7 @@ class OrderController extends Controller
           array(
             'order_id'      => $id['id'],
             'menu_id'       => $value['menu_id'],
-            'restoran'      => $value['restoran'],
+            'restoran_id'   => $value['restoran_id'],
             'harga'         => $value['harga'],
             'keterangan'    => $value['keterangan'],
             'alamat'        => $value['alamat'],
