@@ -16,6 +16,7 @@ class CreateOrderTable extends Migration
             $table->increments('id');
             $table->integer('order_id');
             $table->text('menu_id');
+            $table->integer('restoran_id');
             $table->integer('harga');
             $table->text('keterangan');
             $table->text('status');
