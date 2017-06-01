@@ -22,6 +22,7 @@ class CtreateOrder1Table extends Migration
             $table->string('longitude');
             $table->string('latitude');
             $table->string('alamat');
+            $table->string('total_harga');
             $table->timestamps();
         });
 

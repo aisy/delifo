@@ -362,12 +362,13 @@ class OrderController extends Controller
       array(
         // 'id_order'  => $id,
         // 'id'        => $id,
-        'tanggal'   => Request::input('tanggal'),
-        'status'    => 'belum di konfirmasi',
-        'user_id'   => Request::input('user_id'),
-        'longitude' => Request::input('longitude'),
-        'latitude'  => Request::input('latitude'),
-        'alamat'    => Request::input('alamat');
+        'tanggal'     => Request::input('tanggal'),
+        'status'      => 'belum di konfirmasi',
+        'user_id'     => Request::input('user_id'),
+        'longitude'   => Request::input('longitude'),
+        'latitude'    => Request::input('latitude'),
+        'alamat'      => Request::input('alamat'),
+        'total_harga' => Request::input('total_harga')
         )
       );
 
