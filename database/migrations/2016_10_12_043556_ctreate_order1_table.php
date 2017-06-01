@@ -21,6 +21,7 @@ class CtreateOrder1Table extends Migration
             // table->integer('votes')->unsigned()->default(value)->nullable();
             $table->string('longitude');
             $table->string('latitude');
+            $table->string('alamat');
             $table->timestamps();
         });
 
