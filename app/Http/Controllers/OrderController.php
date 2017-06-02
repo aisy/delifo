@@ -383,6 +383,7 @@ class OrderController extends Controller
             'harga'         => $value['harga'],
             'keterangan'    => $value['keterangan'],
             'alamat'        => $value['alamat'],
+            'jumlah'        => $value['jumlah'],
             'longitude'     => $value['longitude'],
             'latitude'      => $value['latitude'],
             'status'        => 'belum di konfirmasi'
