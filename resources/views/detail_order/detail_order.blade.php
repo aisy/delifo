@@ -25,8 +25,8 @@
 								<th>nama order</th>
 								<th>keterangan</th>
 								<th>alamat</th>
-								<th>longitude</th>
-								<th>latirude</th>
+								<th>jumlah</th>
+								<th>harga</th>
 
 							</tr>
 						</thead>
@@ -35,16 +35,16 @@
 							@foreach ($data_detail as $element)
 							<tr>
 								<td>{{ $element['id'] }}</td>
-								<td>{{ $element['id_order'] }}</td>
-								<td>{{ $element['nama_order'] }}</td>
-								<td>{{ $element['id'] }}</td>
-								<td>{{ $element['id'] }}</td>
-								<td>{{ $element['id'] }}</td>
-								<td>{{ $element['id'] }}</td>
+								<td>{{ $element['order_id'] }}</td>
+								<td>{{ $element['menu_id'] }}</td>
+								<td>{{ $element['keterangan'] }}</td>
+								<td>{{ $element['alamat'] }}</td>
+								<td>{{ $element['jumlah'] }}</td>
+								<td>{{ $element['harga'] }}</td>
 								<td></td>
 							</tr>
 							@endforeach
-							
+
 						</tbody>
 					</table>
 				</div>
@@ -52,5 +52,3 @@
 		</div>
 	</div>
 @stop
-
-

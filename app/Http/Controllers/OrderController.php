@@ -157,7 +157,7 @@ class OrderController extends Controller
     # code...
 
     $data = Order::where('order.status', 'belum di konfirmasi')
-    ->orderBy('order.tanggal', 'DESC')
+    ->orderBy('order.id', 'DESC')
     ->with('User')
     ->with('detail_order')
     ->get();
