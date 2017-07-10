@@ -50,7 +50,6 @@
 						<td>{{ $element->telpon }}</td>
 						<td class="text-center center">
 
-
 							<a href="{{ url('kurir/ubah-data/'.$element['id']) }}" class="btn btn-sm btn-warning"><i class="fa fa-edit"> ubah</i>
 							</a>
 

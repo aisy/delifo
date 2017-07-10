@@ -18,6 +18,7 @@ class CreateRestoranTable extends Migration
             $table->string('nama_restoran');
             $table->string('lat');
             $table->string('lng');
+            $table->string('gambar');
             $table->string('formatted_address');
             $table->integer('no_telp');
             // table->integer('votes')->unsigned()->default(value)->nullable();

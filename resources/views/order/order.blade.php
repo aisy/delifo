@@ -39,7 +39,7 @@
 					@foreach ($data as $element)
 					<tr>
 						<td>{{ $element['id'] }}</td>
-						<td>{{ $element['user_id'] }}</td>
+						<td>{{ $element['id_user'] }}</td>
 						<td>{{ $element['created_at'] }}</td>
 						<td>
 							@if ($element['status']=='belum di konfirmasi')

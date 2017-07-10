@@ -59,6 +59,31 @@
           <input type="text" name="lng" class="form-control" id="" placeholder="">
         </div>
 
+				<div class="form-group">
+					<label for="">Gambar Restoran</label>
+
+					<div class="text-center center">
+						<img src="../Gambar_restoran/{{ $data['gambar'] }}" alt="" height="150px" width="150px">
+					</div>
+					<br>
+
+					<div class="input-group image-preview">
+						<input type="text" placeholder="Pilih gambar dari file" name="gambar" class="form-control image-preview-filename"> <!-- don't give a name === doesn't send on POST/GET -->
+						<span class="input-group-btn">
+							<!-- image-preview-clear button -->
+							<button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+								<span class="glyphicon glyphicon-remove"></span> Clear
+							</button>
+							<!-- image-preview-input -->
+							<div class="btn btn-primary image-preview-input">
+								<span class="glyphicon glyphicon-folder-open"></span>
+								<span class="image-preview-input-title">Cari</span>
+								<input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview"/> <!-- rename it -->
+							</div>
+						</span>
+					</div><!-- /input-group image-preview [TO HERE]-->
+				</div>
+
         <div class="form-group">
           <label for="">Alamat</label>
           <input name="formatted_address" class="form-control" type="text" value="{{ $data['formatted_address'] }}">

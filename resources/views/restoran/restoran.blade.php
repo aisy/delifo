@@ -30,6 +30,7 @@
             <tr>
               <th>#</th>
               <th>Nama Restoran</th>
+              <th>Gambar</th>
               <th>Alamat</th>
               <th>No. Telp</th>
               <th>Pilihan</th>
@@ -42,6 +43,7 @@
             <tr>
               <td>{{ $i }}</td>
               <td>{{ $restoran->nama_restoran }}</td>
+              <td> <img src="Gambar_restoran/{{ $restoran->gambar }}" alt="" height="150px" width="150px"> </td>
               <td>{{ $restoran->formatted_address }}</td>
               <td>{{ $restoran->no_telp }}</td>
               <td>
@@ -78,7 +80,7 @@
           <i class="fa fa-warning"></i> Untuk Mencari lokasi restoran masukkan alamat atau lokasi, jika tidak sesuai silahkan tarik tanda titik merah pada peta untuk merubah lokasi.
         </div>
 
-        <form class="form" action="" method="post">
+        <form class="form" action="" method="post" enctype="multipart/form-data">
 
           <input type="hidden" name="_action" value="{{ csrf_token() }}">
 
@@ -113,6 +115,25 @@
           </div>
 
           <div class="form-group">
+            <label for="">Gambar Restoran</label>
+  					<div class="input-group image-preview">
+  						<input type="text" placeholder="Pilih gambar dari file" name="gambar" class="form-control image-preview-filename"> <!-- don't give a name === doesn't send on POST/GET -->
+  						<span class="input-group-btn">
+  							<!-- image-preview-clear button -->
+  							<button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+  								<span class="glyphicon glyphicon-remove"></span> Clear
+  							</button>
+  							<!-- image-preview-input -->
+  							<div class="btn btn-primary image-preview-input">
+  								<span class="glyphicon glyphicon-folder-open"></span>
+  								<span class="image-preview-input-title">Cari</span>
+  								<input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview"/> <!-- rename it -->
+  							</div>
+  						</span>
+  					</div><!-- /input-group image-preview [TO HERE]-->
+  				</div>
+
+          <div class="form-group">
             <label for="">Alamat</label>
             <input name="formatted_address" class="form-control" type="text" value="">
           </div>
@@ -141,7 +162,7 @@
 
   <script src="{{ URL::to('Asset/js/jquery.dataTables.js') }}" charset="utf-8"></script>
   <script src="{{ URL::to('Asset/js/dataTables.bootstrap.min.js') }}" charset="utf-8"></script>
-  {{-- <script src="{{ URL::to('Asset/js/uploadandpreviewphoto.js') }}" charset="utf-8"></script> --}}
+  <script src="{{ URL::to('Asset/js/uploadandpreviewphoto.js') }}" charset="utf-8"></script>
   <script type="text/javascript">
   $(document).ready(function(){
 

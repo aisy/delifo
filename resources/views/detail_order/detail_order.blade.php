@@ -27,7 +27,6 @@
 								<th>alamat</th>
 								<th>jumlah</th>
 								<th>harga</th>
-
 							</tr>
 						</thead>
 						<tbody>

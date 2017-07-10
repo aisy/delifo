@@ -46,8 +46,7 @@ class DriverController extends Controller{
 
     public function create(Request $request){
 
-
-        $file           = $request->file('input-file-preview'); //mangambil data file dari input type file
+        $file          = $request->file('input-file-preview'); //mangambil data file dari input type file
 
         if($file==NULL){
             $name_file = " ";

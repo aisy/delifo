@@ -44,7 +44,7 @@
               @foreach ($data as $menu)
                 <tr>
                   <td>{{ $i }}</td>
-                    <td> <img src="{{ $menu->gambar }}" alt="" height="150px" width="150px"> </td>
+                  <td> <img src="{{ $menu->gambar }}" alt="" height="150px" width="150px"> </td>
                   <td>{{ $menu->nama_menu }}</td>
                   {{-- <td>{{ $menu->gambar }}</td> --}}
                   <td>{{ $menu->harga }}</td>
