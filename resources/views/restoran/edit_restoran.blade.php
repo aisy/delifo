@@ -24,7 +24,7 @@
         <i class="fa fa-warning"></i> Untuk Mencari lokasi restoran masukkan alamat atau lokasi, jika tidak sesuai silahkan tarik tanda titik merah pada peta untuk merubah lokasi.
       </div>
 
-      <form class="form" action="{{ url('restoran-edit/'.$id) }}" method="post">
+      <form class="form" action="{{ url('restoran-edit/'.$id) }}" method="post" enctype="multipart/form-data">
 
         <input type="hidden" name="_action" value="{{ csrf_token() }}">
         <input name="_method" type="hidden" value="PATCH">

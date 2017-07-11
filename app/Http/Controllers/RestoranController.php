@@ -84,6 +84,8 @@ class RestoranController extends Controller
     //
     $data = Restoran::where('id', $id)->first();
     return View::make('restoran/edit_restoran', compact('data','id'));
+
+
     return redirect('restoran/');
   }
 
@@ -99,6 +101,19 @@ class RestoranController extends Controller
     //
     $data = $request->all();
     $udpate = Restoran::find($id)->update($data);
+
+    // upload file
+    $file = $request->file('input-file-preview');
+
+    if($file == NULL){
+        $name_file = " ";
+    }else{
+        $name_file      = $file->getClientOriginalName(); //dapat nama file dari $file
+        $destination    = public_path().'/Gambar_restoran'; //lokasi folder yang akan di upload
+
+        $file->move($destination, $name_file);
+    }
+
     return redirect('restoran/');
   }
 
