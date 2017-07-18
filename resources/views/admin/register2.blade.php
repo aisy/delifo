@@ -50,7 +50,13 @@
                     <tbody>
                        @foreach($data_admin as $admin)
                        <tr>
-                        <td>{{ $admin['id'] }}</td>
+                        <td>
+                          @if ($admin['id']<=10)
+            								ADM0{{ $admin['id'] }}
+            							@else
+            								ADM{{ $admin['id'] }}
+            							@endif
+                        </td>
                         <td>{{ $admin['nama_lengkap'] }}</td>
                         <td>{{ $admin['username'] }}</td>
                         <td>{{ $admin['telpon'] }}</td>

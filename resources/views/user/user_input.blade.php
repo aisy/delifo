@@ -41,6 +41,13 @@
 				<tbody>
 					@foreach ($data_user as $element)
 					<tr>
+						<td>
+							@if ($element['id']<=10)
+								USR0{{ $element['id'] }}
+							@else
+								USR{{ $element['id'] }}
+							@endif
+						</td>
 						<td>{{ $element->name }}</td>
 						<td>{{ $element->username }}</td>
 						<td>{{ $element->email }}</td>

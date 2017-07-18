@@ -44,7 +44,13 @@
 						<td>
 							<img src="Driver/{{ $element->gambar }}" heigth="20" width="20" class="img-responsive" alt="Image">
 						</td>
-						<td>{{ $element['id'] }}</td>
+						<td>
+							@if ($element['id']<=10)
+								KUR0{{ $element['id'] }}
+							@else
+								KUR{{ $element['id'] }}
+							@endif
+						</td>
 						<td>{{ $element->nama_lengkap }}</td>
 						<td>{{ $element->jkel }}</td>
 						<td>{{ $element->telpon }}</td>

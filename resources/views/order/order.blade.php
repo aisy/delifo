@@ -38,8 +38,20 @@
 				<tbody>
 					@foreach ($data as $element)
 					<tr>
-						<td>{{ $element['id'] }}</td>
-						<td>{{ $element['id_user'] }}</td>
+						<td>
+							@if ($element['id']<=10)
+								ODR0{{ $element['id'] }}
+							@else
+								ODR{{ $element['id'] }}
+							@endif
+						</td>
+						<td>
+							@if ($element['id']<=10)
+								USR0{{ $element['user_id'] }}
+							@else
+								USR{{ $element['user_id'] }}
+							@endif
+						</td>
 						<td>{{ $element['created_at'] }}</td>
 						<td>
 							@if ($element['status']=='belum di konfirmasi')

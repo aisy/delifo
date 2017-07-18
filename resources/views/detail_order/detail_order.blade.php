@@ -33,8 +33,20 @@
 
 							@foreach ($data_detail as $element)
 							<tr>
-								<td>{{ $element['id'] }}</td>
-								<td>{{ $element['order_id'] }}</td>
+								<td>
+									@if ($element['id']<=10)
+										DODR0{{ $element['id'] }}
+									@else
+										DODR{{ $element['id'] }}
+									@endif
+								</td>
+								<td>
+									@if ($element['order_id']<=10)
+										ODR0{{ $element['order_id'] }}
+									@else
+										ODR{{ $element['order_id'] }}
+									@endif
+								</td>
 								<td>{{ $element['menu_id'] }}</td>
 								<td>{{ $element['keterangan'] }}</td>
 								<td>{{ $element['alamat'] }}</td>
