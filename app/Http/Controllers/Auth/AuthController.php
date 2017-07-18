@@ -35,7 +35,8 @@ class AuthController extends Controller
     }
 
     //membuat variabel pada username dengan nama ='name'
-    protected $username = 'username'; 
+    protected $username = 'username';
+    protected $redirectTo = '/';
 
     /**
      * Get a validator for an incoming registration request.

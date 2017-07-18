@@ -90,7 +90,7 @@ class AdminController extends Controller{
             'jkel'          => $data['jkel'],
             'telpon'        => $data['telpon']
             ));
-        return Redirect::to('admin/');
+        return Redirect::to('/');
     }
 
     /**
