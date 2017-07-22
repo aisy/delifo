@@ -275,6 +275,27 @@ class OrderController extends Controller
     }
   }
 
+  public function api_cancelOrder(Request $request, $id){
+    try {
+
+      // $id = Input::get('id_order');
+
+      $req  = array(
+        'driver_id' => null,
+        'status'    => 'belum di konfirmasi'
+      );
+      $book = Order::find($id);
+      $book->update($req);
+
+      return response(['status'=>"sukses"]);
+
+    } catch (Exception $e) {
+
+      echo $e->getMessage();
+
+    }
+  }
+
   public function api_selesai(Request $request, $id){
     try {
 

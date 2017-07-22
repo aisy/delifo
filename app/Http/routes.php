@@ -79,6 +79,7 @@ Route::get('order/lol','OrderController@lol');
 Route::patch('order/api/ambil/{id}', 'OrderController@api_ambil');
 Route::patch('order/api/selesai/{id}', 'OrderController@api_selesai');
 Route::patch('order/api/konfirmasi-item/{id}', 'OrderController@item_konfirmasi');
+Route::patch('order/api/cancel-order/{id}', 'OrderController@api_cancelOrder');
 Route::patch('order/api/cancel-item/{id}', 'OrderController@item_cancel');
 
 // kurir ===========================================================
