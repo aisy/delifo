@@ -74,7 +74,8 @@ Route::get('order/api/data-order2','OrderController@api_OrderList');
 
 Route::get('order/lol','OrderController@lol');
 
-Route::patch('order/api/konfirmasi/{id}', 'OrderController@api_konfirmasi');
+Route::patch('order/api/ambil/{id}', 'OrderController@api_ambil');
+Route::patch('order/api/selesai/{id}', 'OrderController@api_selesai');
 Route::patch('order/api/konfirmasi-item/{id}', 'OrderController@item_konfirmasi');
 Route::patch('order/api/cancel-item/{id}', 'OrderController@item_cancel');
 

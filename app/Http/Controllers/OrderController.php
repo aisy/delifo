@@ -233,14 +233,35 @@ class OrderController extends Controller
   }
 
   //konfirmasi order
-  public function api_konfirmasi(Request $request, $id){
+  public function api_ambil(Request $request, $id){
     try {
 
       // $id = Input::get('id_order');
 
       $req  = array(
         'driver_id' => Input::get('id_driver'),
-        'status'    => 'sudah di konfirmasi'
+        'status'    => 'diambil driver'
+      );
+      $book = Order::find($id);
+      $book->update($req);
+
+      return response(['status'=>"sukses"]);
+
+    } catch (Exception $e) {
+
+      echo $e->getMessage();
+
+    }
+  }
+
+  public function api_selesai(Request $request, $id){
+    try {
+
+      // $id = Input::get('id_order');
+
+      $req  = array(
+        'driver_id' => Input::get('id_driver'),
+        'status'    => 'selesai'
       );
       $book = Order::find($id);
       $book->update($req);
