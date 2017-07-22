@@ -66,12 +66,14 @@ Route::get('order/api/order-user/{id}', 'OrderController@api_orderUser');
 Route::post('order/tambah-data', 'OrderController@insertDO');
 Route::get('order/api/data-order', 'OrderController@api_show');
 Route::get('order/api/data-order/{id}', 'OrderController@api_find');
+
+Route::get('order/api/histori-Driver/{id}','OrderController@api_HistoryDriver');
+
 Route::get('order/api/user/{id}', 'OrderController@api_orderUser');
 Route::get('order/api/user-order/{id}', 'OrderController@api_detailUser');
 // Route::post('order/api/konfirmasi/{id}', 'OrderController@api_konfirmasi');
 
 Route::get('order/api/data-order2','OrderController@api_OrderList');
-
 Route::get('order/lol','OrderController@lol');
 
 Route::patch('order/api/ambil/{id}', 'OrderController@api_ambil');

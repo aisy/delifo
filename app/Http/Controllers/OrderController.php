@@ -209,6 +209,27 @@ class OrderController extends Controller
 
   }
 
+  public function api_HistoryDriver($id){
+    try {
+
+      $data = Order::where('driver_id', $id)
+      ->join('driver','driver.id', '=', 'order.driver_id')
+      ->select(['order.id as id_order', 'order.tanggal' , 'driver.*'])
+      ->orderBy('status', 'desc')
+      ->get();
+
+      if(count($data)>=1){
+        return Response::json($data);
+      }else{
+        return Response::json([['status'=>'tidak ada data']]);
+      }
+
+    } catch (Exception $e) {
+      echo $e->getMessage();
+    }
+
+  }
+
   public function api_detailUser($id){
     try {
 
