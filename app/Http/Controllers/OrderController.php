@@ -212,22 +212,47 @@ class OrderController extends Controller
   public function api_HistoryDriver($id){
     try {
 
-      $data = Order::where('driver_id', $id)
-      ->join('driver','driver.id', '=', 'order.driver_id')
-      ->select(['order.id as id_order', 'order.tanggal' , 'driver.*'])
-      ->orderBy('status', 'desc')
-      ->get();
+      $data   = Order::where('order.id', $id)
+      ->join('users', 'users.id', '=', 'order.user_id')
+      ->select(['order.id as id_order', 'order.tanggal' , 'order.longitude', 'order.latitude', 'order.status', 'order.driver_id' , 'users.*'])
+      ->first();
+
+      $data2 = Detail::where('order_id', $id)->get();
 
       if(count($data)>=1){
+        $data->setAttribute('order', $data2);
         return Response::json($data);
       }else{
-        return Response::json([['status'=>'tidak ada data']]);
+        return Response::json(['status'=>'data tdak ada']);
       }
 
     } catch (Exception $e) {
       echo $e->getMessage();
     }
 
+  }
+
+  public function api_detailHisDriv($id){
+    try {
+
+      $data   = Order::where('order.id', $id)
+      ->join('driver', 'driver.id', '=', 'order.driver_id')
+      ->select(['order.id as id_order', 'order.tanggal' , 'order.longitude', 'order.latitude', 'order.status', 'order.users' , 'driver.*'])
+      ->where('order.status','selesai')
+      ->first();
+
+      $data2 = Detail::where('order_id', $id)->get();
+
+      if(count($data)>=1){
+        $data->setAttribute('order', $data2);
+        return Response::json($data);
+      }else{
+        return Response::json(['status'=>'data tdak ada']);
+      }
+
+    } catch (Exception $e) {
+      echo $e->getMessage();
+    }
   }
 
   public function api_detailUser($id){
@@ -346,6 +371,7 @@ class OrderController extends Controller
 
       $data   = Order::where('order.id', $id)
       ->join('users', 'users.id', '=', 'order.user_id')
+      // ->join('detail_order', 'detail_order.order_id', '=','order.id')
       ->select(['order.id as order_id', 'order.tanggal' , 'order.longitude', 'order.latitude', 'order.status', 'order.driver_id' , 'users.*'])
       ->first();
 
@@ -455,9 +481,7 @@ class OrderController extends Controller
       }
 
       if($insert1 && $insert2){
-
         return Response::json(['status_response'=>'sukses']);
-
       }else{
         return Response::json(['status_response'=>'gagal']);
       }
