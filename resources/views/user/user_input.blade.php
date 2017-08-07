@@ -30,6 +30,7 @@
 			<table id="dataTable" class="table table-bordered" cellspacing="0" width="100%">
 				<thead>
 					<tr>
+						<th>ID</th>
 						<th>Nama</th>
 						<th>Username</th>
 						<th>Email</th>
@@ -53,15 +54,6 @@
 						<td>{{ $element->email }}</td>
 						<td>{{ $element->alamat }}</td>
 						<td>{{ $element->telpon }}</td>
-						{{-- <td class="text-center center">
-
-							<a href="{{ url('user/update/'.$element['id']) }}" class="btn btn-sm btn-warning"><i class="fa fa-edit"> ubah</i>
-							</a>
-
-							{!! Form::open(['method'=>'DELETE','route'=>['kurir.hapus_data.delete',$element['id'] ] ]) !!}
-							{!! Form::button('<i class="fa fa-times"></i> hapus', ['type'=>'submit','class'=>'btn btn-sm btn-danger']) !!}
-							{!! Form::close() !!}
-						</td> --}}
 					</tr>
 					@endforeach
 				</tbody>

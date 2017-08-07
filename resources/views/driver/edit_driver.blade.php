@@ -19,7 +19,7 @@
 			<h3 class="panel-title">Edit Kurir</h3>
 		</div>
 		<div class="panel-body">
-			<form action="{{ url('kurir/ubah-data/'.$id) }}" method="POST" role="form">
+			<form action="{{ url('kurir/ubah-data/'.$id) }}" method="POST" role="form" enctype="multipart/form-data">
 
 				<input name="_method" type="hidden" value="PATCH">
 

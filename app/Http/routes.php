@@ -40,10 +40,12 @@ Route::resource('user/', 'UserController');
 Route::get('user/data-user', 'UserController@get_user');
 Route::get('user/data-user/{id}', 'UserController@show');
 Route::post('user/tambah-data', 'UserController@store');
-// Route::put('users/ubah/{id}',);
+
 Route::delete('user/hapus/{id}', 'UserController@delete');
 
+
 Route::post('user/login', 'UserController@log');
+Route::patch('user/ubah/{id}', 'UserController@update_api');
 
 // pengguna ========================================================
 Route::resource('pengguna/', 'UserController');

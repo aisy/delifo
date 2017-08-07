@@ -171,15 +171,28 @@ class userController extends Controller
         ->first();
 
         if($log){
-
           $log->setAttribute('status','sukses');
           return Response::json($log);
-
-      }else{
-        return Response::json(['status'=>'Gagal Login']);
+        }else{
+          return Response::json(['status'=>'Gagal Login']);
+        }
     }
 
+    // =========================================================================
+    // SERVICE
+    // =========================================================================
 
-}
+    public function update_api(Request $request, $id){
+        //
+        $updateUser = $request->all();
+        $update = User::find($id);
+        $update->update($updateUser);
 
+        if($update){
+            return Response::json(['status'=>'Sukses']);
+        }else{
+          return Response::json(['status'=>'Gagal update']);
+        }
+
+    }
 }
