@@ -26,10 +26,17 @@
 				<input type="hidden" name="_token" value="{{csrf_token()}}" />
 
 				<div class="form-group">
+					<label for="">Nama Lengkap</label>
 					<input type="text" name="nama_lengkap" class="form-control" value="{{ $data_update['nama_lengkap'] }}">
 				</div>
 
 				<div class="form-group">
+					<label for="">Username</label>
+					<input type="text" name="username" class="form-control" value="{{ $data_update['username'] }}">
+				</div>
+
+				<div class="form-group">
+					<label for="">Jenis Kelamin</label>
 					<select name="jkel" class="form-control">
 						<option value="{{ $data_update['jkel'] }}">{{ $data_update['jkel'] }}</option>
 						<option value="">========================</option>
@@ -39,12 +46,14 @@
 				</div>
 
 				<div class="form-group">
+					<label for="">No. telp</label>
 					<input type="text" name="telpon" class="form-control" id="" value="{{ $data_update['telpon'] }}">
 				</div>
 
 				<div class="form-group">
+					<label for="">Username</label>
 					<div class="input-group image-preview">
-						<input type="text" value="Pilih gambar dari file" name="foto" class="form-control image-preview-filename"> <!-- don't give a name === doesn't send on POST/GET -->
+						<input type="text" value="Pilih gambar dari file" name="gambar" class="form-control image-preview-filename"> <!-- don't give a name === doesn't send on POST/GET -->
 						<span class="input-group-btn">
 							<!-- image-preview-clear button -->
 							<button type="button" class="btn btn-default image-preview-clear" style="display:none;">
@@ -69,3 +78,7 @@
 	</div>
 </div>
 @stop
+
+@section('js')
+<script src="{{ URL::to('Asset/js/uploadandpreviewphoto.js') }}" charset="utf-8"></script>
+@endsection
