@@ -47,7 +47,7 @@
 
 							@endif
 
-							<form action="/auth/login" method="POST" role="form">
+							<form action="{{ URL::to('auth/login') }}" method="POST" role="form">
 
 								<!-- buat token untuk verifikasi dan keamanan -->
 								<input type="hidden" name="_token" value="{{csrf_token()}}" />

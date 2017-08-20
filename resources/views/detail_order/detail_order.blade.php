@@ -34,7 +34,7 @@
 						</thead>
 						<tbody>
 							
-							{{ $total=0 }}
+							{{--*/ $total=0 /*--}}
 
 							@foreach ($data_detail as $element)
 							<tr>
@@ -55,10 +55,14 @@
 								<td>{{ $element['menu_id'] }}</td>
 								<td>{{ $element['alamat'] }}</td>
 								<td>{{ $element['jumlah'] }}</td>
-								<td>{{ $element['harga'] }}</td>
-								<td>{{ $harga_total = $element['jumlah']*$element['harga'] }}</td>
+								<td>
+
+									{{ $element['harga'] }}
+								</td>
+								{{--*/ $harga_total = $element['jumlah']*$element['harga'] /*--}}
+								<td>{{ $harga_total }}</td>
 							</tr>
-							{{ $total += $harga_total }}
+							{{--*/ $total += $harga_total /*--}}
 							@endforeach
 							<tr>
 								<td colspan="6" class="grey">

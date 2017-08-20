@@ -31,7 +31,9 @@
 						<th>Id Pemesanan</th>
 						<th>Id User</th>
 						<th>Tanggal pesan</th>
+						<th>Alamat</th>
 						<th>Status</th>
+						<th>Ongkir</th>
 						<th>Pilihan</th>
 					</tr>
 				</thead>
@@ -53,6 +55,7 @@
 							@endif
 						</td>
 						<td>{{ $element['created_at'] }}</td>
+						<td>{{ $element['alamat'] }}</td>
 						<td>
 							@if ($element['status']=='belum di konfirmasi')
 							<i class="fa fa-ban"></i> {{ $element['status'] }}
@@ -60,6 +63,7 @@
 							<i class="fa fa-check"></i> {{ $element['status'] }}
 							@endif
 						</td>
+						<td>{{ $element['ongkir'] }}</td>
 						<td class="text-center center">
 
 							<a href="{{ url('order/detail-order/'.$element['id'].'') }}" class="btn btn-xs btn-info">
