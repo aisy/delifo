@@ -52,7 +52,7 @@
 										ODR{{ $element['order_id'] }}
 									@endif
 								</td>
-								<td>{{ $element['menu_id'] }}</td>
+								<td>{{ $element['nama_menu'] }}</td>
 								<td>{{ $element['alamat'] }}</td>
 								<td>{{ $element['jumlah'] }}</td>
 								<td>

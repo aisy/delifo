@@ -15,7 +15,7 @@ class CreateOrderTable extends Migration
         Schema::create('detail_order', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('order_id');
-            $table->text('menu_id');
+            $table->integer('menu_id');
             $table->integer('restoran_id');
             $table->integer('harga');
             $table->text('keterangan');

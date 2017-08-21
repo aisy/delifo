@@ -16,4 +16,8 @@ class DetailOrder extends Model
     	return $this->belongsTo(Order::class);
     }
 
+    public function Menu(){
+        return $this->hasOne(Menu::class);
+    }
+
 }

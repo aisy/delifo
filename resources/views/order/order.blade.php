@@ -69,13 +69,13 @@
 							<a href="{{ url('order/detail-order/'.$element['id'].'') }}" class="btn btn-xs btn-info">
 								<i class="fa fa-list"></i>
 							</a>
-							<a href="{{ url('order/ubah-order/'.$element['id']) }}" class="btn btn-xs btn-warning">
+							{{--  <a href="{{ url('order/ubah-order/'.$element['id']) }}" class="btn btn-xs btn-warning">
 								<i class="fa fa-edit"></i>
-							</a>
+							</a>  --}}
 
-							{!! Form::open(['method'=>'DELETE', 'route'=>['order.hapus_data.delete',$element['id']] ]) !!}
+							{{--  {!! Form::open(['method'=>'DELETE', 'route'=>['order.hapus_data.delete',$element['id']] ]) !!}
 							{!! Form::button('<i class="fa fa-times"></i>', ['type'=>'submit', 'class'=>'btn btn-xs btn-danger']) !!}
-							{!! Form::close() !!}
+							{!! Form::close() !!}  --}}
 
 						</td>
 					</tr>

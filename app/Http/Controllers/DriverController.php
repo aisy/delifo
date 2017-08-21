@@ -162,8 +162,17 @@ class DriverController extends Controller{
         }
     }
 
-    public function edit_profile($value=''){
+    public function edit_profile($id, Request $request){
 
+        $driverupdate = $request->all();
+        $driver = Driver::find($id)->update($driverupdate);
+
+        if($driver){
+            return Response::json(['status'=>'Berhasil update']);
+        }else{
+            return Response::json(['status'=>'Gagal Update']);
+        }
+        
     }
 
 
