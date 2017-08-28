@@ -22,6 +22,7 @@ class CreateOrderTable extends Migration
             $table->text('status');
             $table->text('alamat');
             $table->text('jumlah');
+            $table->text('note')->nullable();
             $table->string('longitude');
             $table->string('latitude');
             $table->timestamps();

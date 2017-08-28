@@ -19,11 +19,11 @@ class CtreateOrder1Table extends Migration
             $table->integer('user_id');
             $table->integer('driver_id')->nullable();
             $table->integer('ongkir');
-            $table->text('note')->nullable();
             $table->string('longitude');
             $table->string('latitude');
             $table->string('alamat');
             $table->string('total_harga');
+            $table->time('waktu_kirim');
             $table->timestamps();
         });
 

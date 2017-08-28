@@ -461,7 +461,7 @@ class OrderController extends Controller
         'alamat'      => Request::input('alamat'),
         'total_harga' => Request::input('total_harga'),
         'ongkir'      => Request::input('ongkir'),
-        'note'        => Request::input('note')
+        'waktu_kirim' => Request::input('waktu_kirim')
         )
       );
 
@@ -479,7 +479,8 @@ class OrderController extends Controller
             'jumlah'        => $value['jumlah'],
             'longitude'     => $value['longitude'],
             'latitude'      => $value['latitude'],
-            'status'        => 'belum di konfirmasi'
+            'status'        => 'belum di konfirmasi',
+            'note'        => Request::input('note')
           )
         );
       }
