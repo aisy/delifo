@@ -6,9 +6,10 @@ use App\Driver as Driver;
 
 use View;
 // use Request;
-use Response;
-use Input;
+use Response; //untuk memanggil lib respond
+use Input; //untuk memanggil lib input
 use Auth;
+
 use Illuminate\Html\FormFacade;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -57,7 +58,9 @@ class DriverController extends Controller{
             $file->move($destination, $name_file);
         }
 
+        // fungsi insert dengan fitur create
         $insert = Driver::create(
+            // field dari database
             array(
                 'nama_lengkap'  => Input::get('nama_lengkap'),
                 'username'      => Input::get('username'),
@@ -162,17 +165,15 @@ class DriverController extends Controller{
         }
     }
 
-    public function edit_profile($id, Request $request){
-
+    public function edit_profile($value=''){
         $driverupdate = $request->all();
         $driver = Driver::find($id)->update($driverupdate);
-
+        
         if($driver){
             return Response::json(['status'=>'Berhasil update']);
         }else{
             return Response::json(['status'=>'Gagal Update']);
         }
-        
     }
 
 

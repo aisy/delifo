@@ -45,7 +45,7 @@ Route::delete('user/hapus/{id}', 'UserController@delete');
 
 
 Route::post('user/login', 'UserController@log');
-Route::patch('user/ubah/{id}', 'UserController@update_api');
+Route::patch('us/ubah/{id}', 'UserController@update_api');
 
 // pengguna ========================================================
 Route::resource('pengguna/', 'UserController');
@@ -93,8 +93,6 @@ Route::get('kurir/data_order/{id}', 'OrderController@api_find');
 Route::patch('kurir/ubah-data/{id}', 'DriverController@update');
 Route::delete('kurir/hapus-data/{id}', ['as'=>'kurir.hapus_data.delete','uses'=>'DriverController@destroy']);
 
-// API
-Route:patch('kurir/api/ubah-profil/{id}', 'DriverController@edit_profile');
 
 // =============================================================================
 // RESTORAN

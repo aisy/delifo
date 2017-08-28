@@ -13,7 +13,7 @@ class Order extends Model
      //memanggil nama tabel
 	protected $table = 'order';
     //field yang bisa di isi
-	protected $fillable = ['alamat', 'deskripsi', 'tanggal', 'status', 'user_id', 'driver_id', 'longitude', 'latitude','total_harga','ongkir'];
+	protected $fillable = ['alamat', 'deskripsi', 'tanggal', 'status', 'user_id', 'driver_id', 'longitude', 'latitude','total_harga','ongkir','note'];
 
 	public function user(){
 		return $this->belongsTo(User::class);

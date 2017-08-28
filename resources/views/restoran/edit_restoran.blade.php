@@ -90,6 +90,11 @@
         </div>
 
         <div class="form-group">
+            <label for="">Jam Operasional</label>
+            <input name="jam_operasional" class="form-control" type="text" value="{{$data['jam_operasional']  }}">
+          </div>
+
+        <div class="form-group">
           <label for="">No. Telp</label>
           <input name="no_telp" class="form-control" type="text" value="{{ $data['no_telp'] }}">
         </div>

@@ -20,6 +20,7 @@ class CreateRestoranTable extends Migration
             $table->string('lng');
             $table->string('gambar');
             $table->string('formatted_address');
+            $table->string('jam_operasional');
             $table->integer('no_telp');
             // table->integer('votes')->unsigned()->default(value)->nullable();
 

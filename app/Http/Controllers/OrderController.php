@@ -460,7 +460,8 @@ class OrderController extends Controller
         'latitude'    => Request::input('latitude'),
         'alamat'      => Request::input('alamat'),
         'total_harga' => Request::input('total_harga'),
-        'ongkir'      => Request::input('ongkir')
+        'ongkir'      => Request::input('ongkir'),
+        'note'        => Request::input('note')
         )
       );
 

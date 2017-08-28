@@ -33,6 +33,7 @@
               <th>Gambar</th>
               <th>Alamat</th>
               <th>No. Telp</th>
+              <th>Jam Operasional</th>
               <th>Pilihan</th>
             </tr>
           </thead>
@@ -46,6 +47,7 @@
               <td> <img src="Gambar_restoran/{{ $restoran->gambar }}" alt="" height="150px" width="150px"> </td>
               <td>{{ $restoran->formatted_address }}</td>
               <td>{{ $restoran->no_telp }}</td>
+              <td>{{ $restoran->jam_operasional }}</td>
               <td>
 
                   <a href="{{ url('menu/'.$restoran->id) }}" type="button" class="btn btn-info">
@@ -141,6 +143,11 @@
           <div class="form-group">
             <label for="">No. Telp</label>
             <input name="no_telp" class="form-control" type="text" value="">
+          </div>
+
+          <div class="form-group">
+            <label for="">Jam Operasional</label>
+            <input name="jam_operasional" class="form-control" type="text" value="">
           </div>
 
           <div class="form-group">

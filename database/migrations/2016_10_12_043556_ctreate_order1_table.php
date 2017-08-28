@@ -19,7 +19,7 @@ class CtreateOrder1Table extends Migration
             $table->integer('user_id');
             $table->integer('driver_id')->nullable();
             $table->integer('ongkir');
-            // table->integer('votes')->unsigned()->default(value)->nullable();
+            $table->text('note')->nullable();
             $table->string('longitude');
             $table->string('latitude');
             $table->string('alamat');

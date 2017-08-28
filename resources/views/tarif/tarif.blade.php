@@ -37,10 +37,10 @@
 
 					<input name="_method" type="hidden" value="PATCH">
 
-					<div class="form-group">
+					{{--  <div class="form-group">
 						<label for="">Jarak Per Meter</label>
 						<input type="text" name="jml_jarak" class="form-control" value="{{ $data['jml_jarak'] }}">
-					</div>
+					</div>  --}}
 
 					<div class="form-group">
 						<label for="">Tarif</label>
